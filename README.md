@@ -4,12 +4,12 @@
 
 Hanbaek Lee (hanbaeklee1@gmail.com)
 
-[PDF](https://hanbaeklee.github.io/Webpage/Lee_AggRepTrans_2024.pdf)
+[(click here for the latest draft)](https://hanbaeklee.github.io/Webpage/Lee_AggRepTrans_2024.pdf)
 
 </div>
 
 ## Quick start
-Run runner.m in MATLAB after downloading all the folders in the same directory.
+Run runner.m in MATLAB after downloading all the files in the directory of the model of your interest.
 
 ## Citation
 When you use the code, please cite my paper 
