@@ -5,7 +5,6 @@
 Hanbaek Lee (hanbaeklee1@gmail.com)
 
 [PDF](https://hanbaeklee.github.io/Webpage/Lee_AggRepTrans_2024.pdf)
-Repository: https://github.com/frankhan91/DeepHAM
 
 </div>
 
