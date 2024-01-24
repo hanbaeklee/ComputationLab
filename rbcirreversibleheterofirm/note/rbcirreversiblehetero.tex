@@ -1,0 +1,57 @@
+Each firm with an individual state $(k,z)$ solves the following problem:
+\begin{align*}
+  J(k,z;X) &= \max_{k'} \pi(k,z;X) + (1-\delta)k -k' + \mathbb{E}_{z,X} M(X,X') J(k',z';X')
+  \\
+  &\text{s.t. } k' \geq \phi I_{ss} + (1-\delta)k 
+  \\
+  &\hphantom{\text{s.t. }} \pi(k,z;X) = \max_{k,n}\text{ } Ak^{\alpha}n^{\gamma} - w(X)n
+\end{align*}
+where $k$ is individual capital stock; $z$ is the idiosyncratic productivity; $n$ is the labor demand; $I_{ss}$ is the steady-state aggregate investment level.
+
+The household-side problem is as follows:
+\begin{align*}
+  V(a;X) &= \max_{c,a',N}\text{ } log(c) - \eta N + \beta \mathbb{E}V(a';X')
+  \\
+  \text{s.t.}\quad& c + \int a'(X')q(X') d\Gamma_{X'} =  a + w(X)N
+\end{align*}
+where $q$ is the Arrow-Debreu state price.
+
+The stochastic discount factor $M(X,X')$ and wage $w(X)$ is determined at the competitive market:
+\begin{align*}
+  [M]&:\quad a(X) = J(k(X);X)
+  \\
+  [w]&:\quad N(X) = \int n(k,z;X) d\Phi(k,z)
+\end{align*}
+
+The first-order condition of firm's problem is as follows:
+\begin{align*}
+  1 = \mathbb{E}_{z,X} M(X,X') J_{1}(k',z';X') + \lambda(k,z;X)
+\end{align*}
+where $\lambda$ is the Lagrange multiplier.
+The envelope condition of firm's problem is as follows:
+\begin{align*}
+  J_{1}(k,z;X) 
+  &= \pi_{1}(k,z;X) + (1-\delta) - \lambda(k,z;X)(1-\delta)
+  \\
+  &= \pi_{1}(k,z;X) + (1-\delta) (1 - \lambda(k,z;X))
+\end{align*}
+Combining the two conditions above, we have
+\begin{align*}
+  1 = \mathbb{E}_{z,X} M(X,X') (\pi_{1}(k',z';X') + (1-\delta) (1 - \lambda(k',z';X'))) + \lambda(k,z;X),
+\end{align*}
+which pins down the optimal future capital stock $k'(k,z,;X)$.
+% \begin{align*}
+%   [k']:&\quad 1 = \beta\mathbb{E}\left(\frac{c(X')}{c(X)}\right)^{-\sigma}J_{1}(k';X') + \lambda
+%   \\
+%   [k]:&\quad J_{1}(k;X) = \alpha A k^{\alpha-1} + (1-\delta)(1-\lambda)
+%   \\
+%   [\lambda]:&\quad \lambda (k'-(1-\delta)k-\phi I_{ss}) = 0
+%   \\
+%   [c]:&\quad c(X) = A k^{\alpha} - k' + (1-\delta)k
+% \end{align*}
+% The steady state is as follows: 
+% \begin{align*}
+%   1 &= \beta (\alpha k_{ss}^{\alpha-1} + (1-\delta))
+%   \\
+%   k_{ss}  &= \left(\frac{\alpha}{\frac{1}{\beta}-(1-\delta)}\right)^{\frac{1}{1-\alpha}}
+% \end{align*}

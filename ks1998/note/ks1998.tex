@@ -1,0 +1,26 @@
+\subsection*{Recursive formulation}
+The heterogeneous household's problem is as follows:
+\begin{align*}
+  V(a,z;S) &= \max_{c,a'}\text{ } log(c) + \beta \mathbb{E}V(a',z';S')
+  \\
+  \text{s.t.}\quad& c + a' = (1+r(S))a + w(S)z
+  \\
+  & a'\geq 0
+  \\
+  & S' = \Gamma_{S}(S) \quad(\text{Aggregate law of motion})
+  \\
+  & z' \sim \pi(z'|z)
+\end{align*}
+where $S = \{\Phi,A\}$ is the aggregate state.
+
+The production side is as follows:
+\begin{align*}
+  \max_{K,L} A K^{\alpha}L^{1-\alpha} - w(S)L - (r(S)+\delta)K
+\end{align*}
+
+The capital rent $r(S)$ and the wage $w(S)$ are determined at the competitive market:
+\begin{align*}
+  [r]&:\quad \int a'(a,z;S)d\Phi(S) = K'(S)
+  \\
+  [w]&:\quad \int z d\Phi(S) = L(S)
+\end{align*}

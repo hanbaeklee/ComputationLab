@@ -1,0 +1,38 @@
+\subsection*{Recursive formulation}
+The representative household solves the following problem:
+\begin{align*}
+  V(a;S) &= \max_{c,a'} \frac{c^{1-\sigma}}{1-\sigma} + \beta \mathbb{E}V(a';S')
+  \\
+  \text{s.t. }& 
+  c+a' - (1-\delta)a = Aa^{\alpha}
+  \\
+  &
+  a' - (1-\delta)a \geq \phi I_{ss}
+\end{align*}
+where $I_{ss}$ is the steady-state investment level. The aggregate state $S$ is as follows
+\begin{align*}
+  S = [K,A].
+\end{align*}
+$K$ is the aggregate capital stock. $A$ is TFP that follows the log AR(1) process:
+\begin{align*}
+  log(A') = \rho log(A) + \sigma\epsilon,\quad\sigma\sim N(0,1).
+\end{align*}
+$c$ is consumption, $a$ is the wealth in the beginning of a period. $\phi$ is the parameter that governs the degree of the partial irreversibility.
+\subsection*{Optimality conditions}
+The Largrangian is as follows:
+\begin{align*}
+  \mathcal{L} = \frac{c^{1-\sigma}}{1-\sigma} + \beta \mathbb{E}V(a';S') + \mu(Aa^{\alpha} + (1-\delta)a- c-a' ) + \lambda(a' - (1-\delta)a - \phi I_{ss}),
+\end{align*}
+where $\lambda$ is the Lagrange multiplier.
+The first-order optimality conditions are as follows:
+\begin{align*}
+  [c]:&\quad c^{-\sigma} = \mu
+  \\
+  [a']:&\quad \mu = \beta \mathbb{E}V_{1}(a';S') + \lambda
+  \\
+  [a]:&\quad V_{1}(a;S) = \mu(\alpha A a^{\alpha-1} + (1-\delta)) - (1-\delta)\lambda
+\end{align*}
+Then, we obtain
+\begin{align*}
+  c^{-\sigma} -\lambda= \beta \mathbb{E}\left[(c')^{-\sigma}(\alpha A' (a')^{\alpha-1}+(1-\delta)) -(1-\delta)\lambda'\right].
+\end{align*}

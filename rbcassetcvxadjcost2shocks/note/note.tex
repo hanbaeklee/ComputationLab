@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\makeatletter
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{bbm}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{lscape}
+\usepackage{float}
+\usepackage{pdfpages}
+\usepackage{subcaption}
+\usepackage{mathpazo}
+\usepackage{booktabs,caption}
+\usepackage[flushleft]{threeparttable}
+\usepackage{natbib}
+\usepackage[breaklinks]{hyperref}
+\hypersetup{
+    colorlinks = true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=cyan
+    }
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newtheorem{prop}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{conjecture}{Conjecture}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\renewcommand\qedsymbol{$\blacksquare$}
+\setcounter{MaxMatrixCols}{10}
+\geometry{left=6em, right=6em, top=6em,bottom=6em}
+\pagestyle{plain}
+\usepackage[toc,page]{appendix}
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
+
+\begin{document}
+\setstretch{1.25}\small\normalsize%
+\doublespace
+
+\clearpage
+\section*{An RBC model with asset price and convex adjustment cost}
+\input{rbcassetcvx2shocks.tex}
+\end{document}

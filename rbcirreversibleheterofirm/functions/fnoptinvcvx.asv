@@ -1,0 +1,39 @@
+function [kprimeopt] = fnoptinvcvx(pbeta,pdelta,pcvx,vgridk,p,mj,k)
+
+    plength = length(vgridk);
+    
+    vgridkup = [vgridk(2:plength),vgridk(plength)];
+    vgridkdn = [vgridk(1),vgridk(1:(plength-1))];
+    gap = vgridkup-vgridkdn;
+    
+    futureval1 = pbeta*[mj(2:plength),mj(plength)];
+    futureval0 = pbeta*[mj(1),mj(1:(plength-1))];
+    
+    futurevalderiv = (futureval1-futureval0)./(gap);
+    futurevalderiv = repmat(futurevalderiv,plength,1);
+
+    % horizontal: choices
+    % vertical: state k 
+    
+    I = (vgridk'-(1-pdelta)*k);
+    tempMat = futurevalderiv - (p+p*pcvx*(I/k));  
+
+    % interpolation
+
+    low = sum(tempMat>0);
+    low(low<1) = 1;
+    low(low>=(length(tempMat)-1)) = length(tempMat)-1;
+    high = low + 1;
+        
+    weightLow = (tempMat(high) - 0)/(tempMat(high)-tempMat(low));
+    kprimeopt = weightLow*vgridk(low)+(1-weightLow)*vgridk(high);    
+    
+    LB = min(vgridk);
+    UB = max(vgridk);
+
+    kprimeopt(kprimeopt<LB) = LB;
+    kprimeopt(kprimeopt>UB) = UB;
+    
+end
+
+  

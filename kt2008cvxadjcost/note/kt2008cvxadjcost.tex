@@ -1,0 +1,67 @@
+\subsection*{Recursive formulation}
+Firm-side problem is as follows:
+\begin{align*}
+  J(k,z;S) &= \pi(k,z;S) + (1-\delta)k + \int_{0}^{\overline{\xi}} \max\{R^{*}(k,z;S)-\xi w(S),R^{c}(k,z;S)\}\left(\frac{1}{\overline{\xi}}\right)d\xi
+  \\
+  R^{*}(k,z;S) &= \max_{k'} -\gamma k' - \frac{\mu}{2}\left(\frac{k'}{k}-(1-\delta)\right)^{2}k+ \mathbb{E}_{z,S} M(S,S') J(k',z';S')
+  \\
+  R^{c}(k,z;S) &= \max_{k^{c}\in[-\nu k,\nu k]} -\gamma k^{c} - \frac{\mu}{2}\left(\frac{k^{c}}{k}-(1-\delta)\right)^{2}k+ \mathbb{E}_{z,S} M(S,S') J(k^{c},z';S')
+  \\
+  \pi(k,z;S) &=  \max_{L} Azk^{\alpha}L^{\theta} - w(S)L
+\end{align*}
+where $\gamma$ is the aggregate growth rate adjuster as in Khan and Thomas (2008).
+
+The household-side problem is as follows:
+\begin{align*}
+  V(a;S) &= \max_{c,N,a'}\text{ } log(c) - \eta N + \beta \mathbb{E}V(a';S')
+  \\
+  \text{s.t.}\quad& c + \int a'(S') d\Gamma_{S'} =  a + w(S)N
+\end{align*}
+
+The stochastic discount factor $M(S,S')$ and the wage $w(S)$ are determined at the competitive market:
+\begin{align*}
+  [M]&:\quad a(S) = \int J(k,z;S) d\Phi(k,z)
+  \\
+  [w]&:\quad N(S) = \int \left(L(k,z;S) + \frac{\xi^{*}(k,z)^{2}}{2\overline{\xi}}\right) d\Phi(k,z)
+\end{align*}
+where $\xi^{*}(k,z;S)$ is the threshold rule of lumpy investment defined as follows:
+\begin{align*}
+  \xi^{*}(k,z;S) = \frac{1}{w(S)}\left(R^{*}(k,z;S) - R^{c}(k,z;S)\right)
+\end{align*}
+% \subsection*{Optimality conditions}
+% \begin{align*}
+%   % \psi^{*}(k,z;S) &= \min\left\{\frac{R^{*}(k,z;S)-R^{c}(k,z;S)}{\overline{\xi}},1\right\}
+%   \xi^{*}(k,z;S) &= \min\left\{R^{*}(k,z;S)-R^{c}(k,z;S),\overline{\xi}\right\}
+%   \\
+%   J(k,z;S) &= \pi(k,z) + (1-\delta)k + \frac{\xi^{*}(k,z;S)}{\overline{\xi}}\left(R^{*}(k,z;S) - \frac{\xi^{*}(k,z;S)}{2}\right)
+%   \\
+%   &\qquad+ \left(1-\frac{\xi^{*}(k,z;S)}{\overline{\xi}}\right)R^{c}(k,z;S)
+%   \\
+%   J_{1}(k,z;S) &= \pi_{1}(k,z) + (1-\delta) + \frac{\xi_{1}^{*}(k,z;S)}{\overline{\xi}}R^{*}(k,z;S) - \frac{\xi^{*}(k,z;S)}{\overline{\xi}}\xi_{1}^{*}(k,z;S) \\
+%   &+ R^{c}_{1}(k,z;S) - \frac{\xi^{*}(k,z;S)}{\overline{\xi}}R^{c}_{1}(k,z;S) - \frac{\xi_{1}^{*}(k,z;S)}{\overline{\xi}}R^{c}(k,z;S)
+% \end{align*}
+
+% \begin{align*}
+%   % \psi^{*}(k,z;S) &= \min\left\{\frac{R^{*}(k,z;S)-R^{c}(k,z;S)}{\overline{\xi}},1\right\}
+%   \xi^{*}(k,z;S) &= \min\left\{R^{*}(k,z;S)-R^{c}(k,z;S),\overline{\xi}\right\}
+%   \\
+%   J(k,z;S) &= \pi(k,z) + (1-\delta)k + \frac{\xi^{*}(k,z;S)}{\overline{\xi}}\left(R^{*}(k,z;S) - \frac{\xi^{*}(k,z;S)}{2}\right)
+%   \\
+%   &\qquad+ \left(1-\frac{\xi^{*}(k,z;S)}{\overline{\xi}}\right)R^{c}(k,z;S)
+%   \\
+%   J_{1}(k,z;S) &= \pi_{1}(k,z) + (1-\delta) + \frac{\xi_{1}^{*}(k,z;S)}{\overline{\xi}}R^{*}(k,z;S) - \frac{\xi^{*}(k,z;S)}{\overline{\xi}}\xi_{1}^{*}(k,z;S) \\
+%   &+ R^{c}_{1}(k,z;S) - \frac{\xi^{*}(k,z;S)}{\overline{\xi}}R^{c}_{1}(k,z;S) - \frac{\xi_{1}^{*}(k,z;S)}{\overline{\xi}}R^{c}(k,z;S)
+%   \\
+%   J_{1}(k,z;S) &= \pi_{1}(k,z) + (1-\delta) + \left(1-\frac{\xi^{*}(k,z;S)}{\overline{\xi}}\right)R^{c}_{1}(k,z;S)
+%   \\
+%   J_{1}(k,z;S) &= \pi_{1}(k,z) + (1-\delta) + \left(1-\frac{\xi^{*}(k,z;S)}{\overline{\xi}}\right)(-(1-\delta) + \mathbb{E}_{z,S} M(S,S') J_{1}((1-\delta)k,z';S'))
+%   \\
+%   1&=\mathbb{E}_{z,S} M(S,S') J_{1}(k^{*},z';S')
+% \end{align*}
+
+% \begin{align*}
+%   J_{1}\left(\frac{k^{*}}{(1-\delta)},z;S\right) &= \pi_{1}\left(\frac{k^{*}}{(1-\delta)},z\right) + (1-\delta) + \left(1-\frac{\xi^{*}(\frac{k^{*}}{(1-\delta)},z;S)}{\overline{\xi}}\right)\delta
+% \end{align*}
+% \begin{align*}
+%   J(k,z;S) &= \pi(K,z) + (1-\delta)k + \min\left\{\frac{R^{*}(k,z;S)-R^{c}(k,z;S)}{\overline{\xi}},1\right\}
+% \end{align*}
