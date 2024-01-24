@@ -127,8 +127,8 @@ for iAprime = 1:pNumGridA
 
     % find a period where the future shock realization is the same as
     % iAprime and the capital stock is closest to vKprime from below and above.
-    candidate = vK(find(vSimPath==iAprime)); % iso-shock periods
-    candidateLocation = find(vSimPath==iAprime); % iso-shock period locations
+    candidate = vK(find(vSimPath==iAprime)); % the candidates with the specific exogenous state
+    candidateLocation = find(vSimPath==iAprime); % the candidates' location
     candidate(candidateLocation>requiredTime-BURNIN) = []; % last burnin periods cannot be a candidate
     candidate(candidateLocation<BURNIN) = [];  % initial burnin periods cannot be a candidate
     candidateLocation(candidateLocation>requiredTime-BURNIN) = []; % last burnin periods cannot be a candidate

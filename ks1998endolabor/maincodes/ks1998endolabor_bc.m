@@ -166,8 +166,8 @@ for ishockprime = 1:pnumgridz*pnumgridA
     if futureShock ~= iAprime || itrans == pathlength       
     % find a period where the future shock realization is the same as
     % iAprime and the capital stock is closest to Kprime from below and above.
-    candidate = tK(find(tsimpath==iAprime)); % iso-shock periods
-    candidatelocation = find(tsimpath==iAprime); % iso-shock period locations
+    candidate = tK(find(tsimpath==iAprime)); % the candidates with the specific exogenous state
+    candidatelocation = find(tsimpath==iAprime); % the candidates' location
     candidate(candidatelocation>pathlength-burnin) = []; % last burnin periods cannot be a candidate
     candidate(candidatelocation<burnin) = [];  % initial burnin periods cannot be a candidate
     candidatelocation(candidatelocation>pathlength-burnin) = []; % last burnin periods cannot be a candidate
