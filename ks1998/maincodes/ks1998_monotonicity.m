@@ -54,6 +54,6 @@ temptitle = append('A',num2str(iA));
 title(temptitle);
 end
 set(gcf, 'PaperPosition', [0 0 18 10]); %Position plot at left hand corner with width a and height b.
-set(gcf, 'PaperSize', [18 10]); %Set the paper to have width a and height b.Grid off;
+set(gcf, 'PaperSize', [18 10]); %Set the paper to have width a and height b.
 location = ['../figures/monotonicity.pdf'];
 saveas(gcf, location);

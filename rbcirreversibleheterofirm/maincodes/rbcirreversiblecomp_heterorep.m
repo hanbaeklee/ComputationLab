@@ -55,7 +55,7 @@ hold off;
 ax = gca;
 ax.FontSize = 15; 
 set(gcf, 'PaperPosition', [0 0 6 5]); %Position plot at left hand corner with width a and height b.
-set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.Grid off;
+set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.
 
 % save
 location = ['../figures/comp_heterorep_capital','.pdf'];
@@ -90,7 +90,7 @@ hold off;
 ax = gca;
 ax.FontSize = 15; 
 set(gcf, 'PaperPosition', [0 0 6 5]); %Position plot at left hand corner with width a and height b.
-set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.Grid off;
+set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.
 
 % save
 location = ['../figures/comp_heterorep_capital_frictionless','.pdf'];
@@ -122,7 +122,7 @@ hold off;
 ax = gca;
 ax.FontSize = 15; 
 set(gcf, 'PaperPosition', [0 0 6 5]); %Position plot at left hand corner with width a and height b.
-set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.Grid off;
+set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.
 
 % save
 location = ['../figures/comp_heterorep_consumption','.pdf'];
@@ -154,7 +154,7 @@ hold off;
 ax = gca;
 ax.FontSize = 15; 
 set(gcf, 'PaperPosition', [0 0 6 5]); %Position plot at left hand corner with width a and height b.
-set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.Grid off;
+set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.
 
 % save
 location = ['../figures/comp_heterorep_consumption_frictionless','.pdf'];
@@ -186,7 +186,7 @@ hold off;
 ax = gca;
 ax.FontSize = 15; 
 set(gcf, 'PaperPosition', [0 0 6 5]); %Position plot at left hand corner with width a and height b.
-set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.Grid off;
+set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.
 
 % save
 location = ['../figures/comp_heterorep_output','.pdf'];
@@ -219,7 +219,7 @@ hold off;
 ax = gca;
 ax.FontSize = 15; 
 set(gcf, 'PaperPosition', [0 0 6 5]); %Position plot at left hand corner with width a and height b.
-set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.Grid off;
+set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.
 
 % save
 location = ['../figures/comp_heterorep_output_frictionless','.pdf'];
@@ -251,7 +251,7 @@ hold off;
 ax = gca;
 ax.FontSize = 15; 
 set(gcf, 'PaperPosition', [0 0 6 5]); %Position plot at left hand corner with width a and height b.
-set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.Grid off;
+set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.
 
 % save
 location = ['../figures/comp_heterorep_investment','.pdf'];
@@ -284,7 +284,7 @@ hold off;
 ax = gca;
 ax.FontSize = 15; 
 set(gcf, 'PaperPosition', [0 0 6 5]); %Position plot at left hand corner with width a and height b.
-set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.Grid off;
+set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.
 
 % save
 location = ['../figures/comp_heterorep_investment_frictionless','.pdf'];

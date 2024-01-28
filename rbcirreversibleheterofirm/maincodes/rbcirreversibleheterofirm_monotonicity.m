@@ -57,6 +57,6 @@ ax = gca;
 ax.FontSize = 15; 
 end
 set(gcf, 'PaperPosition', [0 0 12 8]); %Position plot at left hand corner with width a and height b.
-set(gcf, 'PaperSize', [12 8]); %Set the paper to have width a and height b.Grid off;
+set(gcf, 'PaperSize', [12 8]); %Set the paper to have width a and height b.
 location = ['../figures/monotonicity.pdf'];
 saveas(gcf, location);

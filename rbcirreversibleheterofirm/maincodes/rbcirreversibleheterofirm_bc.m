@@ -521,7 +521,7 @@ xlabel("Time (quarter)","FontSize",15);
 ax = gca;
 ax.FontSize = 15; 
 set(gcf, 'PaperPosition', [0 0 6 5]); %Position plot at left hand corner with width a and height b.
-set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.Grid off;
+set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.
 location = ['../figures/rtm_comp.pdf'];
 saveas(gcf, location);
 
@@ -578,6 +578,6 @@ box off;
 ax = gca;
 ax.FontSize = 15; 
 set(gcf, 'PaperPosition', [0 0 6 5]); %Position plot at left hand corner with width a and height b.
-set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.Grid off;
+set(gcf, 'PaperSize', [6 5]); %Set the paper to have width a and height b.
 location = ['../figures/lom_p.pdf'];
 saveas(gcf, location);
