@@ -12,7 +12,7 @@ This is the guideline of the solution code for the following model:
 
 The package is composed of 
 1) main file ('runner.m')
-2) implementation files ('./mainCodes')
+2) implementation files ('./maincodes')
 3) functions ('./functions')
 4) solution storage ('./solutions')
 5) figure storage ('./figures')
