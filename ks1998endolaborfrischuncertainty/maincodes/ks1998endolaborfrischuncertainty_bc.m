@@ -439,17 +439,17 @@ fprintf('======================== \n');
 [~,vYhpfilter] = hpfilter(log(tY),1600);
 [~,vIhpfilter] = hpfilter(log(tI),1600);
 [~,vChpfilter] = hpfilter(log(tC),1600);
-fprintf('mean log(output): %.4f \n', mean(log(vYhpfilter)));
-fprintf('st. dev. log(output): %.4f \n', std(log(vYhpfilter)));
-fprintf('skewness log(output): %.4f \n', skewness(log(vYhpfilter)));
+fprintf('mean log(output): %.4f \n', mean((vYhpfilter)));
+fprintf('st. dev. log(output): %.4f \n', std((vYhpfilter)));
+fprintf('skewness log(output): %.4f \n', skewness((vYhpfilter)));
 fprintf('------------------------ \n');
-fprintf('mean log(investment): %.4f \n', mean(log(vIhpfilter)));
-fprintf('st. dev. log(investment): %.4f \n', std(log(vIhpfilter)));
-fprintf('skewness log(investment): %.4f \n', skewness(log(vIhpfilter)));
+fprintf('mean log(investment): %.4f \n', mean((vIhpfilter)));
+fprintf('st. dev. log(investment): %.4f \n', std((vIhpfilter)));
+fprintf('skewness log(investment): %.4f \n', skewness((vIhpfilter)));
 fprintf('------------------------ \n');
-fprintf('mean log(consumption): %.4f \n', mean(log(vChpfilter)));
-fprintf('st. dev. log(consumption): %.4f \n', std(log(vChpfilter)));
-fprintf('skewness log(consumption): %.4f \n', skewness(log(vChpfilter)));
+fprintf('mean log(consumption): %.4f \n', mean((vChpfilter)));
+fprintf('st. dev. log(consumption): %.4f \n', std((vChpfilter)));
+fprintf('skewness log(consumption): %.4f \n', skewness((vChpfilter)));
 
 %%
 %=========================  
