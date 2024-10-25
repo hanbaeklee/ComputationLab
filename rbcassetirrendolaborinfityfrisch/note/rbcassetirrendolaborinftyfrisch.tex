@@ -1,6 +1,6 @@
 A represntative firm solves the following problem:
 \begin{align*}
-  J(k;S) &= \max_{k',n} Ak^{\alpha}n^{\gamma} -w(S)n -k' + (1-\delta)k + \beta\mathbb{E}M(S,S')J(k';S')
+  J(k;S) &= \max_{k',n} Ak^{\alpha}n^{\gamma} -w(S)n -k' + (1-\delta)k + \mathbb{E}M(S,S')J(k';S')
   \\
   &\text{s.t. } k' - (1-\delta)k \geq \phi I_{ss}
 \end{align*}
@@ -10,7 +10,7 @@ The household-side problem is as follows:
 \begin{align*}
   V(a;S) &= \max_{c,N,a'}\text{ } log(c) - \eta N + \beta \mathbb{E}V(a';S')
   \\
-  \text{s.t.}\quad& c + \int q(S,S') a'(S') d\Gamma_{S'} =  a + w(S)N
+  \text{s.t.}\quad& c + \int M(S,S') a'(S') d\Gamma_{S'} =  a + w(S)N
 \end{align*}
 
 The stochastic discount factor $M(S,S')$ and wage $w(S)$ are determined at the competitive market:
