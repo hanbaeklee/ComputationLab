@@ -1,0 +1,34 @@
+\subsection*{Recursive formulation}
+A continuum of measure one of households is considered, and they live forever in discrete time.
+Each household consumes, and saves. The labor endowment $z$ is exogenously determined by an $AR(1)$ process. The recursive formulation of the household's problem is as follows:
+\begin{align*}
+  v(a,z;\Phi) &= \max_{c,a'} \quad log(c) + \beta \mathbb{E}_{z}v(a',z';\Phi)
+  \\
+  \text{s.t.}&\quad c + a' = w(\Phi)z + a(1+r(\Phi))
+  \\
+  &\quad a'\geq \underline{a} = 0
+  \\
+  &\quad log(z') = \rho log(z) + \sigma\sqrt{1-\rho^{2}}\epsilon,\quad \epsilon\sim N(0,1)
+  % &\quad z' \sim \Gamma(z'|z)\quad(\text{Markov chain})
+\end{align*}
+where apostrophe indicates future allocations. $\Phi$ is the joint distribution of the individual states $(a,z)$. The borrowing limit $\underline{a}$ is given as $0$.
+The prices $w(\Phi)$ and $r(\Phi)$ are determined at the competitive labor and capital input markets.
+Now we consider a production sector that operates using the CRS Cobb-Douglas production function:
+\begin{align*}
+	% f(k_{t},n_{t}) = 
+	\max_{K,L} A K^{\alpha}L^{1-\alpha} - (r(\Phi)+\delta)K - w(\Phi)L
+\end{align*}
+The aggregate TFP $A=1$ fixed.
+The competitive input markets are cleared at the prices $(w,r)$:
+\begin{align*}
+	\text{\underline{Supply}}&\quad\text{ \underline{Demand}}
+	\\
+	\text{[Capital market]}\quad\qquad \int ad\Phi &= K
+	\\
+	\text{[Labor market]}\quad\qquad \int z d\Phi &= L
+\end{align*}
+The parameters levels are set as in Aiyagari (1994), as follows:
+\begin{align*}
+  \rho = 0.9,\quad \sigma = 0.2,\quad \alpha = 0.36,\quad \beta = 0.96, \quad \delta = 0.08.
+\end{align*}
+The idiosyncratic labor endowment process is discretized by Tauchen method using 7 grid points covering $\pm3$ standard-deviation range.
