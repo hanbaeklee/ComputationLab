@@ -188,12 +188,12 @@ tr         = (1-pgamma)*(pgamma./tw).^(pgamma/(1-pgamma)).*vA.^(1/(1-pgamma))...
 tl         = (pgamma.*vA.*tk.^palpha./tw).^(1/(1-pgamma));
 ty         = vA.*tk.^(palpha).*tl.^(pgamma);
 ti         = ty - tempC;
-vjnew      = vA.*tk.^(palpha).*tl.^(pgamma) - ti + tempV3;
+vjnew      = (1-pgamma)*vA.*tk.^(palpha).*tl.^(pgamma) - ti + tempV3;
 tlambdanew = 1 - tempV2;
 
 %irreversibility
-tlambdanew(ti>pphi*ss.eq.i) = 0;
-ti(ti<=pphi*ss.eq.i) = pphi*ss.eq.i;
+% tlambdanew(ti>pphi*ss.eq.i) = 0;
+% ti(ti<=pphi*ss.eq.i) = pphi*ss.eq.i;
 
 %=========================    
 % step 2: simulate forward

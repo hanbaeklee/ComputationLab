@@ -54,7 +54,7 @@ eq.l            = (pgamma*eq.k^palpha/eq.w)^(1/(1-pgamma));
 eq.i            = pdelta*eq.k;
 eq.y            = eq.k^palpha*eq.l^pgamma;
 eq.c            = eq.k^palpha*eq.l^pgamma - eq.i;
-eq.j            = (eq.y - eq.w*eq.l - eq.i + pbeta)/(1-pbeta);
+eq.j            = (eq.y - eq.w*eq.l - eq.i)/(1-pbeta);
 eq.r            = (1-pgamma)*(pgamma/eq.w).^(pgamma/(1-pgamma))...
                 .* (palpha/(1-pgamma)).*eq.k.^(palpha/(1-pgamma)-1) ...
                 + (1-pdelta);
