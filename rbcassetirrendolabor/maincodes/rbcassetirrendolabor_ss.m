@@ -45,7 +45,7 @@ K           = K2L*L;
 Y           = K^pAalpha*L^(1-pAalpha);
 I           = pDdelta*K;
 C           = Y - I;
-J           = (palpha*Y/(1-pBbeta));
+J           = ((pAalpha*Y-I)/(1-pBbeta));
 
 %=========================  
 % report
