@@ -1,4 +1,4 @@
-%% An RBC model with asset price, irreversibility, and endogenous labor supply
+%% An RBC model with endogenous labor supply (Frisch elasticity-based)
 % 2023.09.25
 % Hanbaek Lee (hanbaeklee1@gmail.com)
 % When you use the code, please cite the paper 
@@ -20,32 +20,43 @@ addpath(fnPath);
 % parameters - households
 %=========================
 pFrisch         = 1.000;
-pEeta           = 80.000;
-pRiskAversion   = 2.000; 
-pBbeta          = 0.960;
+pEeta           = 5.000;
+pRiskAversion   = 1.000; 
+pBbeta          = 0.990;
 
 %=========================
 % parameters - firms
 %=========================
 pAalpha         = 0.330;
-pDdelta         = 0.100;
-pPhi            = 0.975;
+pDdelta         = 0.025;
+
+%=========================
+% taxes
+%=========================
+% pTtauc          = 0.06;
+% pTtauw          = 0.15;
+% pTtaur          = 0.15;
+
+%=========================
+% aggregate shock
+%=========================
+% the steady state is with a trivial aggregate TFP
+pNumGridA   = 1;
+A           = 1;
 
 %%
 %=========================
 % steady-state equilibrium
 %=========================
-w           = (1-pAalpha)/(((1/pBbeta + pDdelta - 1))^(pAalpha/(1-pAalpha)));
-K2L         = (w/(1-pAalpha))^(1/pAalpha);
-L           = ((...
-                w /( pEeta*( (((1-pAalpha)/w)^((1-pAalpha)/pAalpha) -pDdelta) *K2L)^pRiskAversion )...
-               )^pFrisch)^(1/(1+pFrisch*pRiskAversion));
+r           = ((1/pBbeta) - 1);
+K2L         = ((r+pDdelta)/(pAalpha*A))^(1/(pAalpha-1));
+w           = K2L^pAalpha*A*(1-pAalpha);
 
+L           = (w/pEeta)^pFrisch;
+C           = (r*K2L + w)*L;
 K           = K2L*L;
-Y           = K^pAalpha*L^(1-pAalpha);
-I           = pDdelta*K;
-C           = Y - I;
-J           = ((pAalpha*Y-I)/(1-pBbeta));
+Y           = A*K^pAalpha*L^(1-pAalpha);
+
 
 %=========================  
 % report
@@ -55,5 +66,5 @@ fprintf(' \n');
 %=========================
 % save
 %=========================
-dir = '../solutions/rbcassetirrendolabor_ss';
+dir = '../solutions/rbcfrischlabor_ss';
 save(dir);

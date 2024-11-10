@@ -1,4 +1,4 @@
-%% An RBC model with asset price, irreversibility, and endogenous labor supply
+%% An RBC model with endogenous labor supply (Frisch elasticity-based)
 % 2023.09.25
 % Hanbaek Lee (hanbaeklee1@gmail.com)
 % When you use the code, please cite the paper 
@@ -19,19 +19,18 @@ addpath(fnpath);
 %=========================
 % load the stead-state equilibrium allocations
 %=========================
-dir = '../solutions/rbcassetirrendolabor_ss.mat';
-load(dir);
-ss = load('../solutions/rbcassetirrendolabor_ss.mat');
+load '../solutions/rbcfrischlabor_ss.mat';
+ss = load('../solutions/rbcfrischlabor_ss.mat');
 
 %=========================
 % aggregate shock
 %=========================
 % Tauchen method
-pNumGridA = 7;
-pPersistence = 0.90;
-pVol = 0.013;
+pNumGridA = 5;
+pPersistence = 0.95;
+pVol = 0.009;
 [mTransA, vGridA] = ...
-fnTauchen(pPersistence, 0, pVol^2, pNumGridA, 3);
+fnTauchen(pPersistence, 0, pVol^2, pNumGridA, 2);
 vGridA = exp(vGridA);
 
 %=========================
@@ -44,26 +43,25 @@ rng(seed);
 % T = 3001;
 T = 5001;
 % T = 10001;
-BURNIN = 500;
-requiredTime = T+BURNIN;
-pInitialPoint = 1;
+BURNIN = 500; %initial burn-in period
+requiredTime = T+BURNIN; %number of total periods
+pInitialPoint = 1; 
 vSimPath = fnSimulator(pInitialPoint,mTransA,BURNIN+T);
 
 %=========================    
 % initial guess for the allocation path
 %=========================
-vC      = ss.C*ones(requiredTime,1);
-vL      = ss.L*ones(requiredTime,1);
+vr      = ss.r*ones(requiredTime,1);
 vw      = ss.w*ones(requiredTime,1);
+vL      = ss.L*ones(requiredTime,1);
+vC      = ss.C*ones(requiredTime,1);
 vK      = ss.K*ones(requiredTime,1) + normrnd(0,0.0000001,requiredTime,1);
 vY      = ss.Y*ones(requiredTime,1);
+% vT      = ss.T*ones(requiredTime,1);
 vI      = ss.K*pDdelta*ones(requiredTime,1);
-vJ      = ss.J*ones(requiredTime,1);
-vLambda = zeros(requiredTime,1);
 
 % separate paths to be updated iteratively
 vCnew   = zeros(requiredTime,1);
-vLambdanew = zeros(requiredTime,1);
 vKnew   = ss.K*ones(requiredTime,1);
 
 %=========================    
@@ -71,15 +69,14 @@ vKnew   = ss.K*ones(requiredTime,1);
 %=========================    
 % use the following line if you wish to start from where you stopped
 % before.
-% load '../solutions/WIP_rbcassetirrendolabor_bc.mat';
+% load load './solutions/WIP_rbcfrischlabor_bc.mat';
 
 %=========================    
 % preparation
 %=========================    
 % the updating weights
-weightOld1   = 0.9500; % updating weight for capital stock 
-weightOld2   = 0.9500; % updating weight for consumption
-weightOld3   = 0.9500; % updating weight for lagrange mutiplier
+weightOld1   = 0.9000; % updating weight for capital stock 
+weightOld2   = 0.9000; % updating weight for consumption
 
 % for an extremely high accuracy, you might consider weight as high as
 % 0.9990;
@@ -121,8 +118,6 @@ vKprime = [vK(2:end);vK(1)];
 % declare an empty object tempV1 that will carry the cumulatively summed expected
 % values.
 tempV1 = 0;
-tempV2 = 0;
-tempV3 = 0;
 for iAprime = 1:pNumGridA
 
     Aprime = vGridA(iAprime);
@@ -138,62 +133,39 @@ for iAprime = 1:pNumGridA
     [candidate,index] = sort(candidate); % to find the closest, sort the candidates in order
     candidateLocation = candidateLocation(index); % save the location
 
-    KLow = sum(repmat(candidate',length(vKprime),1)<vKprime,2); % using the sorted vector, find the period where the capital stock is closest to vKprime from below
-    KLow(KLow<=1) = 1; % the location cannot go below 1.
-    KLow(KLow>=length(index)) = length(index)-1; % the location cannot go over the length(index)-1: note that it's the closest from BELOW.
-    KHigh = KLow+1; %define the period where the capital stock is closest to vKprime from above
-    weightLow = (candidate(KHigh) - vKprime)./(candidate(KHigh)-candidate(KLow)); %compute the weight on the lower side
+    nLow = sum(repmat(candidate',length(vKprime),1)<vKprime,2); % using the sorted vector, find the period where the capital stock is closest to vKprime from below
+    nLow(nLow<=1) = 1; % the location cannot go below 1.
+    nLow(nLow>=length(index)) = length(index)-1; % the location cannot go over the length(index)-1: note that it's the closest from BELOW.
+    nHigh = nLow+1; %define the period where the capital stock is closest to vKprime from above
+    weightLow = (candidate(nHigh) - vKprime)./(candidate(nHigh)-candidate(nLow)); %compute the weight on the lower side
     weightLow(weightLow<0) = 0; % optional restriction on the extrapolation
     weightLow(weightLow>1) = 1; % optional restriction on the extrapolation
-   
-    Lambdaprime = weightLow.*vLambda(candidateLocation(KLow )) + (1-weightLow).*vLambda(candidateLocation(KHigh ));    
-    wprime = ...
-        weightLow.* ...
-        (((1-pAalpha)*Aprime).^(1/pAalpha).*vKprime.*pEeta^pFrisch.*vC(candidateLocation(KLow )).^(pRiskAversion*pFrisch)).^(1/(1/pAalpha+pFrisch)) +...
-    (1-weightLow).* ...
-        (((1-pAalpha)*Aprime).^(1/pAalpha).*vKprime.*pEeta^pFrisch.*vC(candidateLocation(KHigh)).^(pRiskAversion*pFrisch)).^(1/(1/pAalpha+pFrisch));
+    
+    LLow    = ((1-pAalpha)*Aprime*vKprime.^pAalpha./pEeta).^(pFrisch/(1+pAalpha*pFrisch));
+    LHigh   = ((1-pAalpha)*Aprime*vKprime.^pAalpha./pEeta).^(pFrisch/(1+pAalpha*pFrisch));
+    rLow    = pAalpha*Aprime*vKprime.^(pAalpha-1).*LLow.^(1-pAalpha) - pDdelta;
+    rHigh   = pAalpha*Aprime*vKprime.^(pAalpha-1).*LHigh.^(1-pAalpha) - pDdelta;
 
-    rprime = Aprime.^(1/pAalpha)*((1-pAalpha)./wprime).^((1-pAalpha)/(pAalpha)) + (1-pDdelta)*(1-Lambdaprime);
-
-    tempV1 = tempV1 + (futureShock ~= iAprime).* pBbeta.*...
+    tempV1 = tempV1 + (futureShock ~= iAprime).* pBbeta .*...
                 mTransA(iA,iAprime).*...
-                (weightLow.*(1./vC(candidateLocation(KLow ))).^(pRiskAversion).*(rprime) ...
-           + (1-weightLow).*(1./vC(candidateLocation(KHigh))).^(pRiskAversion).*(rprime) );
-
-    tempV2 = tempV2 + (futureShock ~= iAprime).* pBbeta.*...
-                mTransA(iA,iAprime).*...
-                (weightLow.*(vC./vC(candidateLocation(KLow ))).^(pRiskAversion).*(rprime ) ...
-           + (1-weightLow).*(vC./vC(candidateLocation(KHigh))).^(pRiskAversion).*(rprime) );
-
-    tempV3 = tempV3 + (futureShock ~= iAprime).* pBbeta.*...
-                mTransA(iA,iAprime).*...
-                (weightLow.*(vC./vC(candidateLocation(KLow ))).^(pRiskAversion).*(vJ(candidateLocation(KLow ))) ...
-           + (1-weightLow).*(vC./vC(candidateLocation(KHigh))).^(pRiskAversion).*(vJ(candidateLocation(KHigh))) );    
+                (weightLow.*(1./(vC(candidateLocation(nLow )) - (pEeta/(1+1/pFrisch))*LLow.^(1+1/pFrisch)  )).^(pRiskAversion).*(1+rLow ) ...
+           + (1-weightLow).*(1./(vC(candidateLocation(nHigh)) - (pEeta/(1+1/pFrisch))*LHigh.^(1+1/pFrisch) )).^(pRiskAversion).*(1+rHigh) );
 
 end
 
 % for the realized future shock level on the simulated path
-wfuture    = (((1-pAalpha)*vGridA(futureShock)).^(1/pAalpha).*vKprime.*pEeta^pFrisch.*vC(iFuture).^(pRiskAversion*pFrisch)).^(1/(1/pAalpha+pFrisch));
-rfuture    = vGridA(futureShock).^(1/pAalpha).*((1-pAalpha)./wfuture).^((1-pAalpha)/(pAalpha)) + (1-pDdelta)*(1-vLambda(iFuture));
+Lfuture    = ((1-pAalpha).*vGridA(futureShock).*vKprime.^pAalpha./pEeta).^(pFrisch/(1+pAalpha*pFrisch));
+rfuture    = pAalpha*vGridA(futureShock).*vKprime.^(pAalpha-1).*Lfuture.^(1-pAalpha) - pDdelta;
 tempV1     = tempV1 + pBbeta*...
-                mTransRealized.*(1./vC(iFuture)).^(pRiskAversion).*(rfuture); 
-tempV2     = tempV2 + pBbeta*...
-                mTransRealized.*(vC./vC(iFuture)).^(pRiskAversion).*(rfuture); 
-tempV3     = tempV3 + pBbeta*...
-                mTransRealized.*(vC./vC(iFuture)).^(pRiskAversion).*(vJ(iFuture)); 
+                mTransRealized.*(1./(vC(iFuture) - (pEeta/(1+1/pFrisch))*Lfuture.^(1+1/pFrisch) )).^(pRiskAversion).*(1+rfuture); 
 
 % update the allocations
-tempC      = ((1-vLambda)./tempV1).^(1/pRiskAversion);
-vw         = (((1-pAalpha)*vA).^(1/pAalpha).*vK.*pEeta^pFrisch.*vC.^(pRiskAversion*pFrisch)).^(1/(1/pAalpha+pFrisch));
-vL         = ((1-pAalpha).*vA./vw).^(1/pAalpha).*vK;
-vY         = vA.*vK.^(pAalpha).*vL.^(1-pAalpha);
-vI         = vY - tempC;
-vJnew      = pAalpha*vA.*vK.^(pAalpha).*vL.^(1-pAalpha) - vI + tempV3;
-vLambdanew = 1 - tempV2;
-
-%irreversibility
-vLambdanew(vI>pPhi*ss.I) = 0;
-vI(vI<=pPhi*ss.I) = pPhi*ss.I;
+vL = ((1-pAalpha).*vA.*vK.^pAalpha./pEeta).^(pFrisch/(1+pAalpha*pFrisch));
+tempC = ((1./tempV1).^(1/pRiskAversion)) + (pEeta/(1+1/pFrisch))*vL.^(1+1/pFrisch);
+vw = (1-pAalpha).*vA.*vK.^(pAalpha).*vL.^(-pAalpha);
+vr = pAalpha.*vA.*vK.^(pAalpha-1).*vL.^(1-pAalpha) - pDdelta;
+vI = (vr+pDdelta).*vK + vw.*vL - tempC;
+vY = vA.*vK.^(pAalpha).*vL.^(1-pAalpha);
 
 %=========================    
 % step 2: simulate forward
@@ -206,16 +178,12 @@ vCnew = vGridA(vSimPath).*vKnew.^(pAalpha).*vL.^(1-pAalpha) - vI;
 
 error2 = mean(([...
     vC      - vCnew;...
-    vK      - vKnew;...
-    vLambda - vLambdanew...
+    vK      - vKnew...
     ]).^2);
 errorK = vK - vKnew;
 
 vC      = weightOld1*vC        + (1-weightOld1)*vCnew;
 vK      = weightOld2*vK        + (1-weightOld2)*vKnew;
-vLambda = weightOld3*vLambda   + (1-weightOld3)*vLambdanew;
-vKprime = [vK(2:end);vK(1)];
-vJ      = vJnew;
 
 if (floor((pNumIter-1)/50) == (pNumIter-1)/50)
 %=========================  
@@ -223,7 +191,6 @@ if (floor((pNumIter-1)/50) == (pNumIter-1)/50)
 %========================= 
 Phrase = ['Iteration is in progress: ',num2str(pNumIter),'st iteration'];
 disp(Phrase);
-fprintf(' \n');
 fprintf('Convergence criterion: \n');
 fprintf('Error: %.18f \n', error2);
 fprintf(' \n');
@@ -247,19 +214,20 @@ pause(0.2);
 %=========================  
 % save (mid)
 %=========================  
-save '../solutions/WIP_rbcassetirrendolabor_bc.mat';
-toc;
+save '../solutions/WIP_rbcfrischlabor_bc.mat';
+% toc;
 
 end
 
 pNumIter = pNumIter+1;
 
 end % end of the final loop
+toc;
 
 %=========================  
 % save (final)
 %=========================  
-save '../solutions/rbcassetirrendolabor_bc.mat';
+save '../solutions/rbcfrischlabor_bc.mat';
 
 %%
 %=========================  
@@ -427,5 +395,4 @@ plot(samplePeriod,recovered(samplePeriod),'Color','blue','LineStyle','--','LineW
 legend("True LoM","Linear LoM","location","best","FontSize",15)
 location = ['../figures/lom_w.pdf'];
 saveas(gcf, location);
-
 

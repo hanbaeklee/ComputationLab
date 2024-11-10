@@ -131,8 +131,8 @@ for iAprime = 1:pnumgridA
 
     % find a period where the future shock realization is the same as
     % iAprime and the capital stock is closest to vKprime from below and above.
-    candidate = tk(find(tsimpath==iAprime)); % the candidates with the specific exogenous state
-    candidateLocation = find(tsimpath==iAprime); % the candidates' location
+    candidate = tk(find(tsimpath==iAprime)); % iso-shock periods
+    candidateLocation = find(tsimpath==iAprime); % iso-shock period locations
     candidate(candidateLocation>pathlength-burnin) = []; % last burnin periods cannot be a candidate
     candidate(candidateLocation<burnin) = [];  % initial burnin periods cannot be a candidate
     candidateLocation(candidateLocation>pathlength-burnin) = []; % last burnin periods cannot be a candidate
@@ -187,7 +187,7 @@ tr         = (1-pgamma)*(pgamma./tw).^(pgamma/(1-pgamma)).*vA.^(1/(1-pgamma))...
 tl         = (pgamma.*vA.*tk.^palpha./tw).^(1/(1-pgamma));
 ty         = vA.*tk.^(palpha).*tl.^(pgamma);
 ti         = ty - tempC;
-vjnew      = vA.*tk.^(palpha).*tl.^(pgamma) - ti + tempV3;
+vjnew      = (1-pgamma)*vA.*tk.^(palpha).*tl.^(pgamma) - ti + tempV3;
 tlambdanew = 1 - tempV2;
 
 %irreversibility
@@ -293,17 +293,17 @@ fprintf('======================== \n');
 [~,vYhpfilter] = hpfilter(log(ty),1600);
 [~,vIhpfilter] = hpfilter(log(ti),1600);
 [~,vChpfilter] = hpfilter(log(tc),1600);
-fprintf('mean log(output): %.4f \n', mean((vYhpfilter)));
-fprintf('st. dev. log(output): %.4f \n', std((vYhpfilter)));
-fprintf('skewness log(output): %.4f \n', skewness((vYhpfilter)));
+fprintf('mean log(output): %.4f \n', mean(log(vYhpfilter)));
+fprintf('st. dev. log(output): %.4f \n', std(log(vYhpfilter)));
+fprintf('skewness log(output): %.4f \n', skewness(log(vYhpfilter)));
 fprintf('------------------------ \n');
-fprintf('mean log(investment): %.4f \n', mean((vIhpfilter)));
-fprintf('st. dev. log(investment): %.4f \n', std((vIhpfilter)));
-fprintf('skewness log(investment): %.4f \n', skewness((vIhpfilter)));
+fprintf('mean log(investment): %.4f \n', mean(log(vIhpfilter)));
+fprintf('st. dev. log(investment): %.4f \n', std(log(vIhpfilter)));
+fprintf('skewness log(investment): %.4f \n', skewness(log(vIhpfilter)));
 fprintf('------------------------ \n');
-fprintf('mean log(consumption): %.4f \n', mean((vChpfilter)));
-fprintf('st. dev. log(consumption): %.4f \n', std((vChpfilter)));
-fprintf('skewness log(consumption): %.4f \n', skewness((vChpfilter)));
+fprintf('mean log(consumption): %.4f \n', mean(log(vChpfilter)));
+fprintf('st. dev. log(consumption): %.4f \n', std(log(vChpfilter)));
+fprintf('skewness log(consumption): %.4f \n', skewness(log(vChpfilter)));
 
 %%
 %=========================  

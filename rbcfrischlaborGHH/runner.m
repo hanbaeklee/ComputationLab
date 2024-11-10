@@ -1,4 +1,4 @@
-%% An RBC model with endogenous labor supply (Frisch elasticity-based)
+%% An RBC model with endogenous labor supply (Frisch elasticity-based) and GHH utility
 % 2023.09.25
 % Hanbaek Lee (hanbaeklee1@gmail.com)
 % When you use the code, please cite the paper 
