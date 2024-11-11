@@ -1,11 +1,11 @@
 \subsection*{Recursive formulation}
 The representative household solves the following problem:
 \begin{align*}
-  V(a;S) &= \max_{c,a'} \frac{c^{1-\sigma}}{1-\sigma} - 
-  \frac{\eta}{1+\frac{1}{\chi}}L^{1+\frac{1}{\chi}}+ \beta \mathbb{E}V(a';S')
+  V(a;S) &= \max_{c,a',N} \frac{c^{1-\sigma}}{1-\sigma} - 
+  \frac{\eta}{1+\frac{1}{\chi}}N^{1+\frac{1}{\chi}}+ \beta \mathbb{E}V(a';S')
   \\
   \text{s.t. }& 
-  (1+\tau^{c})c+a' = (1+(1-\tau^{r})r(S))a + (1-\tau^{w})w(S)L
+  (1+\tau^{c})c+a' = (1+(1-\tau^{r})r(S))a + (1-\tau^{w})w(S)N
   % \\
   % &
   % a' - (1-\delta)a \geq \phi I_{ss}
@@ -19,6 +19,20 @@ $K$ is the aggregate capital stock. $A$ is TFP that follows the log AR(1) proces
   log(A') = \rho log(A) + \sigma\epsilon,\quad\sigma\sim N(0,1).
 \end{align*}
 $c$ is consumption, $a$ is the wealth in the beginning of a period. %$\phi$ is the parameter that governs the degree of the partial irreversibility.
+The prices $w(S)$ and $r(S)$ are determined at the competitive labor and capital input markets.
+A production sector that operates using the CRS Cobb-Douglas production function:
+\begin{align*}
+	% f(k_{t},n_{t}) = 
+	\max_{K,L} A K^{\alpha}L^{1-\alpha} - (r(\Phi)+\delta)K - w(\Phi)L
+\end{align*}
+Then, we close the economy by introducing the following market clearing conditions at which the prices $(w,r)$ are determined:
+\begin{align*}
+	\text{\underline{Supply}}&\quad\text{ \underline{Demand}}
+	\\
+	\text{[Capital market]}\quad\qquad  a &= K
+	\\
+	\text{[Labor market]}\quad\qquad N &= L
+\end{align*}
 
 % \subsection*{Optimality conditions}
 % The Largrangian is as follows:
