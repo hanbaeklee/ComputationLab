@@ -1,0 +1,55 @@
+\subsection*{Recursive formulation}
+The representative household solves the following problem:
+\begin{align*}
+  V(a;S) &= \max_{c,a',N} \frac{1}{1-\sigma}\left(c-
+  \frac{\eta}{1+\frac{1}{\chi}}N^{1+\frac{1}{\chi}}\right)^{1-\sigma} + \beta \mathbb{E}V(a';S')
+  \\
+  \text{s.t. }& \quad
+  % (1+\tau^{c})c+a' = (1+(1-\tau^{r})r(S))a + (1-\tau^{w})w(S)L
+  c+a' = (1+r(S))a + w(S)N
+  % \\
+  % &
+  % a' - (1-\delta)a \geq \phi I_{ss}
+\end{align*}
+where the aggregate state $S$ is as follows
+\begin{align*}
+  S = [K,A].
+\end{align*}
+$K$ is the aggregate capital stock. $A$ is TFP that follows the log AR(1) process:
+\begin{align*}
+  log(A') = \rho log(A) + \sigma\epsilon,\quad\sigma\sim N(0,1).
+\end{align*}
+$c$ is consumption, $L$ is labor supply, and $a$ is the wealth in the beginning of a period. %$\phi$ is the parameter that governs the degree of the partial irreversibility.
+The prices $w(S)$ and $r(S)$ are determined at the competitive labor and capital input markets.
+A production sector that operates using the CRS Cobb-Douglas production function:
+\begin{align*}
+	% f(k_{t},n_{t}) = 
+	\max_{K,L} A K^{\alpha}L^{1-\alpha} - (r(\Phi)+\delta)K - w(\Phi)L
+\end{align*}
+Then, we close the economy by introducing the following market clearing conditions at which the prices $(w,r)$ are determined:
+\begin{align*}
+	\text{\underline{Supply}}&\quad\text{ \underline{Demand}}
+	\\
+	\text{[Capital market]}\quad\qquad  a &= K
+	\\
+	\text{[Labor market]}\quad\qquad N &= L
+\end{align*}
+
+% \subsection*{Optimality conditions}
+% The Largrangian is as follows:
+% \begin{align*}
+%   \mathcal{L} = \frac{c^{1-\sigma}}{1-\sigma} + \beta \mathbb{E}V(a';S') + \mu(Aa^{\alpha} + (1-\delta)a- c-a' ) + \lambda(a' - (1-\delta)a - \phi I_{ss}),
+% \end{align*}
+% where $\lambda$ is the Lagrange multiplier.
+% The first-order optimality conditions are as follows:
+% \begin{align*}
+%   [c]:&\quad c^{-\sigma} = \mu
+%   \\
+%   [a']:&\quad \mu = \beta \mathbb{E}V_{1}(a';S') + \lambda
+%   \\
+%   [a]:&\quad V_{1}(a;S) = \mu(\alpha A a^{\alpha-1} + (1-\delta)) - (1-\delta)\lambda
+% \end{align*}
+% Then, we obtain
+% \begin{align*}
+%   c^{-\sigma} -\lambda= \beta \mathbb{E}\left[(c')^{-\sigma}(\alpha A' (a')^{\alpha-1}+(1-\delta)) -(1-\delta)\lambda'\right].
+% \end{align*}
