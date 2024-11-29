@@ -8,7 +8,7 @@
 % Method in the Sequence Space and Applications."
 
 This is the guideline of the solution code for the following model:
-"An RBC model with asset price, irreversibility, and endogenous labor supply."
+"An RBC model with asset price and irreversibility."
 
 The package is composed of 
 1) main file ('runner.m')
