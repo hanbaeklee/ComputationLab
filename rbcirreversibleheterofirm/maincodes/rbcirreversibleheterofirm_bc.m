@@ -110,7 +110,7 @@ tK = ss.eq.k*ones(pathlength+1,1)+ normrnd(0,0.000001,pathlength+1,1);
 %=========================    
 % use the following line if you wish to start from where you stopped
 % before.
-% load '../solutions/WIP_rbcirreversibleheterofirm_bc.mat';
+% load '../solutions/rbcirreversibleheterofirm_bc.mat';
 
 %%        
 %=========================    
@@ -504,19 +504,19 @@ saveas(gcf, location);
 
 %%
 % plot - for report
-predictedpath = tK(burnin+1:end-2);
-realizedpath = eq.k(burnin+1:end-2);
+predictedpath = log(tK(burnin+1:end-2));
+realizedpath = log(eq.k(burnin+1:end-2));
 
 samplePeriod = 500:1000;
 figure;
 plot(samplePeriod,predictedpath(samplePeriod),'LineWidth',2.0);hold on;
 plot(samplePeriod,realizedpath(samplePeriod),'-.','LineWidth',2.0);
-plot(samplePeriod,recovered(samplePeriod),':','Color',"black",'LineWidth',2.0);
+plot(samplePeriod,log(recovered(samplePeriod)),':','Color',"black",'LineWidth',2.0);
 xlim([min(samplePeriod),max(samplePeriod)]);
 hold off;
 box off;
 legend("Predicted","Realized","Linear LoM","location","northeast");
-ylabel("Aggregate capital stock","FontSize",15);
+ylabel("log(K_{t})","FontSize",15);
 xlabel("Time (quarter)","FontSize",15);
 ax = gca;
 ax.FontSize = 15; 

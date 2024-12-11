@@ -26,7 +26,7 @@ rep     = load('../../rbcassetirrendolaborinfityfrisch/solutions/rbcassetirrendo
 heterofrless  = load('../solutions/rbcirreversibleheterofirm_bc_frictionless.mat');
 repfrless     = load('../../rbcassetirrendolaborinfityfrisch/solutions/rbcassetirrendolaborinftyfrisch_bc_frictionless.mat');
 
-sampleperiod = 600:1000;
+sampleperiod = 1000:1500;
 burnin = hetero.burnin;
 
 %%
