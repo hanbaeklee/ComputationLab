@@ -12,9 +12,9 @@ The household-side problem is as follows:
 \begin{align*}
   V(a;X) &= \max_{c,a',N}\text{ } log(c) - \eta N + \beta \mathbb{E}V(a';X')
   \\
-  \text{s.t.}\quad& c + \int a'(X')q(X') d\Gamma_{X'} =  a + w(X)N
+  \text{s.t.}\quad& c + \int a'(X')q(X,X') d\Gamma_{X'} =  a + w(X)N
 \end{align*}
-where $q$ is the Arrow-Debreu state price.
+where $q$ is the stochastic discount factor; $a'$ is the future equity portfolio.
 
 The stochastic discount factor $M(X,X')$ and wage $w(X)$ is determined at the competitive market:
 \begin{align*}
