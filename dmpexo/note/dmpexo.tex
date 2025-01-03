@@ -1,0 +1,44 @@
+\noindent\textbf{Household}\hspace{3mm} A representative consumes the produced output after the wasted total vacancy posting cost.
+\begin{align*}
+  c(S) = nz - \kappa v(S)
+\end{align*}
+where $n$ is the employment, $z$ is aggregate TFP, $\kappa$ is the vacancy posting cost, and $v$ is the vacancy. We assume a temporal CRRA utility with risk aversion $\sigma>0$ and discount factor $\beta\in(0,1)$.
+\\
+% \begin{align*}
+%   c = nA - \kappa v
+% \end{align*}
+
+\noindent\textbf{Aggregate states} \hspace{3mm} The aggregate state $S$ is as follows:
+\begin{align*}
+  S = \{z,n{_{-1}}\}
+\end{align*}
+where $z$ is aggregate TFP, and $n_{-1}$ is the past employment level. The aggregate productivity follows a log AR(1) process.
+\\
+
+\noindent\textbf{Matching function} \hspace{3mm} A Cobb-Douglas matching function $M$ is considered:
+\begin{align*}
+  M(u,v) = m u^{\alpha}v^{1-\alpha}
+\end{align*}
+where $u=1-n$ is unemployment level, $v$ is the total vacancy, and $m$ is the matching efficiency.
+\\
+
+\noindent\textbf{Unemployment/employment dynamics} \hspace{3mm} The employment level evolves in the following dynamics:
+\begin{align*}
+  % u &= 1-n
+  % \\
+  n &= (1-\lambda)n_{-1}+ vq
+\end{align*}
+where $q = \frac{M}{v} = m \theta^{-\xi}$ is the vacancy-filling probability. $\theta=u/v$ is the market tightness. $\lambda\in(0,1)$ is the exogenous job separation rate.
+Due to the Cobb-Douglass specification, $q$ can sometimes take a value greater value than unity over the business cycle. We truncate $q$ at unity. The repeated transition method is not confined by a specific form of the matching function, but the Cobb-Douglass specification is considered for illustrative purposes.
+\\
+
+\noindent\textbf{Equilibrium condition}\hspace{3mm} The standard vacancy posting condition leads to the following equilibrium condition:
+\begin{align*}
+  \frac{\kappa}{q(S)} = (1-\lambda)\beta\mathbb{E}\left[\left(\frac{c(S)}{c(S')}\right)^{\sigma}
+  \left(z' - w(S') + \frac{\kappa}{q(S')}\right)\right]
+\end{align*}
+where the wage $w=w(S)$ is determined by the following Nash bargaining outcome:
+\begin{align*}
+  w(S) = (1-\eta)b + \eta (A + \kappa\theta(S)).
+\end{align*}
+$b>0$ is the home production, and $\eta\in(0,1)$ is the bargaining weight for household.

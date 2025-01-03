@@ -1,0 +1,122 @@
+\textbf{Household}\hspace{3mm} From the inter-temporal and intra-temporal optimality conditions of the household the following equations are obtained:
+\begin{align*}
+    \frac{1}{1+i} &= \mathbb{E} \beta \left(\frac{\xi'}{\xi}\right) \left(\frac{c'}{c}\right)^{-\sigma}\frac{1}{1+\pi'}
+    \\
+    n &= \left(\frac{w}{\eta c^{\sigma}}\right)^{\chi}
+  \end{align*}
+  where $c$ is consumption; $i$ is nominal interest rate; $\pi$ is the inflation rate. $n$ is labor supply, and $w$ is real wage. Apostrophe indicates future allocation.
+  $\xi$ is a preference shock that follows a standard log AR(1) process.
+  % The household's budget constraint is as follows:
+  The resource constraint is as follows:
+  \begin{align*}
+    c = Y -\frac{\psi}{2} (\pi-\overline{\pi})^{2}Y
+  \end{align*}
+\textbf{Firms}\hspace{3mm} From the pricing decision and the CES aggregator, we obtain the following standard conditions:
+  \begin{align*}
+    \epsilon-1 &= \epsilon mc - \psi(1+\pi)(\pi-\overline{\pi}) +\beta\psi \mathbb{E}\left(\frac{c}{c'}\right)^{\sigma}(1+\pi')(\pi'-\overline{\pi})\frac{Y'}{Y}
+  \end{align*}
+  \textbf{Monetary policy}\hspace{3mm} %Government determines the bond supply $b'$ that determines the nominal interest rate $i$ consistent with the Taylor rule.
+  The Taylor rule is as follows
+  \begin{align*}
+    % i = r + \overline{\pi} + \phi_{\pi}(\pi-\overline{\pi}) + \epsilon^{MP}
+    % i = \overline{r} + \overline{\pi} + \phi_{\pi}(\pi-\overline{\pi}) + \epsilon^{MP}
+    % 1+i = \left(1+\overline{r}\right)(1+\pi)\left(\frac{1+\pi}{1+\overline{\pi}}\right)^{\phi_{\pi}}
+    % \left(\frac{Y}{Y^{f}}\right)^{\phi_{Y}}
+    % e^{\epsilon^{MP}}
+    1+i = (1+i_{-1})^{\rho_{i}}\left[\left(1+\overline{r}\right)(1+\pi)\left(\frac{1+\pi}{1+\overline{\pi}}\right)^{\phi_{\pi}}
+    \left(\frac{Y}{Y^{f}}\right)^{\phi_{Y}}
+    e^{\epsilon^{MP}}\right]^{1-\rho_{i}}
+  \end{align*}
+  The natural output $Y^{f}$ is defined as follows:
+  \begin{align*}
+    Y^{f} 
+    % = AN^{f} = A \left(\frac{w^{f}}{\eta c^{\sigma}}\right)^{\chi}
+    % = A \left(\frac{w^{f}}{\eta Y^{\sigma}}\right)^{\chi}
+    % = A^{\frac{1}{1+\sigma\chi}} \left(\frac{A\frac{\epsilon-1}{\epsilon}}{\eta}\right)^{\frac{\chi}{1+\sigma\chi}}
+    := \left(\frac{\epsilon-1}{\eta\epsilon}\right)^{\frac{\chi}{1+\sigma\chi}}A^{\frac{1+\chi}{1+\sigma\chi}} 
+  \end{align*}
+  The monetary policy shock $\epsilon^{MP}$ follows a standard log AR(1) process.
+  % \begin{align*}
+  %   % i = r + \overline{\pi} + \phi_{\pi}(\pi-\overline{\pi}) + \epsilon^{MP}
+  %   % i = \overline{r} + \overline{\pi} + \phi_{\pi}(\pi-\overline{\pi}) + \epsilon^{MP}
+  %   % 1+i = \left(\frac{1+r}{1+\overline{\pi}}\right)\left(\frac{1+\pi}{1+\overline{\pi}}\right)^{\phi_{\pi}}e^{\epsilon^{MP}}
+  % \end{align*}
+  % where $r$ is the time-varying real interest rate. Therefore, the bond supply is determined as follows:
+  % where $\overline{r}$ is the natural interest rate. 
+  % Therefore, the bond supply is determined as follows:
+  % \begin{align*}
+  %   % b' = (Y-c_{ZLB}+b)(1+r + \overline{\pi} + \phi_{\pi}(\pi-\overline{\pi}) + \epsilon^{MP})
+  %   b' = (Y-c_{ZLB}+b)(1+\overline{r} + \overline{\pi} + \phi_{\pi}(\pi-\overline{\pi}) + \epsilon^{MP})
+  % \end{align*}
+    % We assume the inter-temporal budget balance holds not to let the solution path explode.
+    \\
+%   If $i<0$, 
+  \textbf{Equilibrium conditions} \hspace{3mm} In equilibrium, the following conditions hold:
+  \begin{align*}
+    mc &= \frac{w}{A}
+    \\
+    Y &= AN
+    % \\
+    % c_{ZLB} &= c
+    % \\
+    % i_{MKT} &= i
+  \end{align*}
+  Aggregate TFP $A$ follows a standard log AR(1) process.
+
+% \section*{NNK: Nonlinearity in the New-Keynesian Models}
+% % Aggregate sufficient statistics: $P$
+% \subsection{Household}
+% \begin{align*}
+%   % c &= wn + d
+%   % \\
+%   \frac{1}{1+r} &= \beta\mathbb{E}\left(\frac{c'}{c}\right)^{-\sigma}
+%   \\
+%   \frac{1}{1+i} &= \beta\mathbb{E}\left(\frac{c'}{c}\right)^{-\sigma}\frac{1}{1+\pi'}
+% %   c^{-\sigma} &= \beta\mathbb{E}c'^{-\sigma}\frac{1+i}{1+\pi'}
+%   % 1+i &= \left(\beta\mathbb{E}\left(\frac{c}{c'}\right)^{\sigma}\frac{1}{1+\pi'}\right)^{-1}
+%   \\
+%   n &= \left(\frac{w}{\eta c^{\sigma}}\right)^{\chi}
+% \end{align*}
+
+% \subsection{Price dynamics}
+% \begin{align*}
+%   \epsilon-1 &= \epsilon mc - \psi(1+\pi)(\pi-\overline{\pi}) +\beta\psi \mathbb{E}\left(\frac{c}{c'}\right)^{\sigma}(1+\pi')(\pi'-\overline{\pi})\frac{Y'}{Y}
+%   % \\
+%   % \Delta &= (1-\phi)(1+\pi^{*})^{-\epsilon}(1+\pi)^{\epsilon} + (1+\pi)^{\epsilon}\phi \Delta_{0}
+% \end{align*}
+
+% \subsection{Policy}
+% \begin{align*}
+% %   i = (1-\rho_{i})\overline{i} + \rho_{i}i_{0} + (1-\rho_{i})(\phi_{\pi}(\pi-\overline{\pi}) + \phi_{x}(lnY-lnY^{f})) + \epsilon_{MP}
+% % (1+i) = (1+r)(1+\overline{\pi})\left[\left(\frac{1+\pi}{1+\overline{\pi}}\right)^{\phi_{\pi}}\left(\frac{Y/Y^{f}}{Y_ss/Y^{f}_ss}\right)^{\phi_{y}}\right]e^{\epsilon_{MP}}
+% % i = (r+\overline{\pi}) +\phi_{\pi}(\pi-\overline{\pi})+\epsilon_{MP}
+% i = (r+\pi) +\phi_{\pi}(\pi-\overline{\pi})+\epsilon_{MP}
+% % 1+i = (1+r)(1+\pi)\left(\frac{1+\pi}{1+\overline{\pi}}\right)^{\phi_{\pi}}+\epsilon_{MP}
+% % i-r = \overline{\pi} +\phi_{\pi}(\pi-\overline{\pi})+\epsilon_{MP}
+% \end{align*}
+% % \begin{align*}
+% %   (1+i) = (1+i_{0})^{\rho_{i}} (1+\overline{i})^{1-\rho_{i}}\left[\left(\frac{1+\pi}{1+\overline{\pi}}\right)^{\phi_{\pi}}\left(\frac{Y/Y^{f}}{Y_ss/Y^{f}_ss}\right)^{\phi_{y}}\right]^{1-\rho_{i}}e^{\epsilon_{MP}}
+% % \end{align*}
+% \subsection{Equilibrium conditions}
+% \begin{align*}
+%   N &= n
+%   \\ 
+%   Y &= AN = C + \frac{\psi}{2}(\pi-\overline{\pi})^{2}Y
+%   \\
+%   mc &= \frac{w}{A}
+% \end{align*}
+% % \begin{align*}
+% %   P^{*} &= \frac{\epsilon}{\epsilon-1}\frac{X_{1}}{X_{2}}
+% %   \\
+% %   X_{1} &= c^{-\sigma}mcP^{\epsilon}Y + \phi \beta \mathbb{E}X_{1}'
+% %   \\
+% %   X_{2} &= c^{-\sigma}P^{\epsilon-1}Y + \phi \beta \mathbb{E}X_{1}'
+% %   \\
+% %   P &=  ((1-\phi)(P^{*})^{1-\epsilon} + \phi P_{0}^{1-\epsilon})^{\frac{1}{1-\epsilon}}
+% % \end{align*}
+
+% % \clearpage
+% % \section{Note}
+% % \begin{align*}
+% % i-r = log(\beta\mathbb{E}\left(\frac{c'}{c}\right)^{-\sigma}\frac{\pi'}{1+\pi'})
+% % \end{align*}
