@@ -240,7 +240,7 @@ vYf = (((1/pEta)*(pElasticity-1)/pElasticity)^(pFrisch/(1+pFrisch*pRiskAversion)
     .* (vA).^((1+pFrisch)/(1+pFrisch*pRiskAversion));
 
 vipast      = [ss.i;vinew(1:end-1)];
-vPiAggnew = ( ((1+vi)./((1+vipast).^pRhor)).^(1/(1-pRhor)).*pBeta.*(1+pPiTarget).^pTaylorPi./((vY./vYf).^pTaylorY.*exp(vMPshock))...
+vPiAggnew = ( ((1+vi).*exp(-vMPshock)./((1+vipast).^pRhor)).^(1/(1-pRhor)).*pBeta.*(1+pPiTarget).^pTaylorPi./((vY./vYf).^pTaylorY)...
             ).^(1/(1+pTaylorPi)) - 1;
 % an alternative Taylor rule:
 % vPiAggnew = ( (1+vi).*pBeta.*(1+pPiTarget).^pTaylorPi./((vY./vYf).^pTaylorY.*exp(vMPshock)) ).^(1/(1+pTaylorPi))- 1;
