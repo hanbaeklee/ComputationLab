@@ -1,6 +1,6 @@
 <div align="center">
 
-# A Dynamically Consistent Global Nonlinear Solution Method in the Sequence Space and Applications
+# Dynamically Consistent Global Nonlinear Solutions in the Sequence Space: Theory and Applications
 
 Hanbaek Lee (hanbaeklee1@gmail.com)
 
@@ -15,7 +15,7 @@ Run runner.m in MATLAB after downloading all the files in the directory of the m
 When you use the code, please cite my paper 
 ```bibtex
 @article{Lee_RTM_2024,
-  title={A Dynamically Consistent Global Nonlinear Solution Method in the Sequence Space and Applications},
+  title={Dynamically Consistent Global Nonlinear Solutions in the Sequence Space: Theory and Applications},
   author={Lee, Hanbaek},
   journal={Working paper},
   year={2024}
