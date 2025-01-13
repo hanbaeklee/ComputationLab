@@ -1,7 +1,6 @@
 <div align="center">
 
-# Dynamically Consistent Global Nonlinear Solutions \\
-in the Sequence Space: Theory and Applications
+# Dynamically Consistent Global Nonlinear Solutions in the Sequence Space: Theory and Applications
 
 Hanbaek Lee (hanbaeklee1@gmail.com)
 
