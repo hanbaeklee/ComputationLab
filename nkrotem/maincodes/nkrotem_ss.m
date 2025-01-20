@@ -42,10 +42,7 @@ error       = 10;
 weightold   = 0.99;
 tol_iter    = 1e-10;
 
-% initial guess
-c           = 0.60;
 b           = 0.00;
-
 piAgg       = pPiTarget;
 mc          = (1/pElasticity)*(pElasticity-1+pPsi*(1-pBeta)*(piAgg-pPiTarget)*(1+piAgg));
 w           = mc*A;
