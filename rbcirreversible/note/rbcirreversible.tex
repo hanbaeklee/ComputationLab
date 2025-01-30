@@ -1,7 +1,6 @@
-\subsection*{Recursive formulation}
 The representative household solves the following problem:
 \begin{align*}
-  V(a;S) &= \max_{c,a'} \frac{c^{1-\sigma}}{1-\sigma} + \beta \mathbb{E}V(a';S')
+  V(a;X) &= \max_{c,a'} \frac{c^{1-\sigma}}{1-\sigma} + \beta \mathbb{E}V(a';X')
   \\
   \text{s.t. }& 
   c+a' - (1-\delta)a = Aa^{\alpha}
@@ -9,15 +8,17 @@ The representative household solves the following problem:
   &
   a' - (1-\delta)a \geq \phi I_{ss}
 \end{align*}
-where $I_{ss}$ is the steady-state investment level. The aggregate state $S$ is as follows
+where $V$ is the value function of a household. The value function's arguments are wealth $a$ and the aggregate state $X$. $c$ is consumption and $\sigma$ is the risk-aversion parameter.
+$I_{ss}$ is the steady-state investment level. $\phi$ is the parameter that governs the degree of the irreversibility. $\delta$ is the depreciation rate, and $\alpha$ is the capital share in the production function $F = Aa^{\alpha}$.
+An apostrophe indicates a future allocation.
+The aggregate state $X$ is as follows
 \begin{align*}
-  S = [K,A].
+  X = [K,A].
 \end{align*}
-$K$ is the aggregate capital stock. $A$ is TFP that follows the log AR(1) process:
+$K$ is the aggregate capital stock, satisfying $a=K$ in equilibrium due to the capital market clearing. $A$ is TFP that follows the log AR(1) process:
 \begin{align*}
   log(A') = \rho log(A) + \sigma\epsilon,\quad\sigma\sim N(0,1).
 \end{align*}
-$c$ is consumption, $a$ is the wealth in the beginning of a period. $\phi$ is the parameter that governs the degree of the partial irreversibility.
 \subsection*{Optimality conditions}
 The Largrangian is as follows:
 \begin{align*}
