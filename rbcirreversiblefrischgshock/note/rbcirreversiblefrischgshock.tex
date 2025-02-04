@@ -1,0 +1,56 @@
+\subsection*{Recursive formulation}
+The representative household solves the following problem:
+\begin{align*}
+  V(a;S) &= \max_{c,n,a'}\text{ } \frac{c^{1-\sigma}}{1-\sigma} - \frac{\eta}{1+\frac{1}{\chi}} n^{1+\frac{1}{\chi}} + \beta \mathbb{E}V(a';S')
+  \\
+  \text{s.t. }& 
+  c+a' = a(1+r(S)) + w(S)n - T
+  \\
+  &
+  a' - (1-\delta)a \geq \phi I_{ss}
+\end{align*}
+where $I_{ss}$ is the steady-state saving (investment) level. $c$ is consumption, $a$ is the wealth in the beginning of a period. $N$ is the labor supply. $T$ is the lump-sum subsidy.
+$\sigma>0$ is the risk aversion parameter, and $\chi$ is the Frisch elasticity.
+$\phi$ is the parameter that governs the degree of the irreversibility. 
+
+We consider a production sector that operates using a CRS Cobb-Douglas production function:
+\begin{align*}
+  \max_{K,L}\text{ } AK^{\alpha}L^{1-\alpha} - w(S)L - (r(S)+\delta)K,
+\end{align*}
+where $A$ is the aggregate TFP, $K$ and $L$ are capital and labor input demands. The capital rent $r(S)$ and the wage $w(S)$ are determined at the competitive factor market by clearing conditions.
+
+The aggregate state $S$ is as follows
+\begin{align*}
+  S = \{K,A,G\}.
+\end{align*}
+$K$ is the aggregate capital stock. $A$ is TFP and $G$ is government demand that follow log AR(1) processes:
+\begin{align*}
+  log(A') &= \rho_{A}log(A) + \sigma_{A}\epsilon\quad \epsilon\sim_{iid} N(0,1)
+  \\
+  log(G') &= (1-\rho_{G})log(\overline{G})+\rho_{G}log(G) + \sigma_{G}\epsilon\quad \epsilon\sim_{iid} N(0,1)
+\end{align*}
+where $\overline{G}$ is the average government demand level.
+Government budget is balanced by $T=G$ in each period.
+\subsection*{Optimality conditions}
+The Largrangian is as follows:
+\begin{align*}
+  \mathcal{L} 
+  &= \frac{c^{1-\sigma}}{1-\sigma} - \frac{\eta}{1+\frac{1}{\chi}} L^{1+\frac{1}{\chi}} + \beta \mathbb{E}V(a';S') + \mu(a(1+r(S)) + w(S)n - T - c-a' )
+  \\ 
+  &+ \lambda(a' - (1-\delta)a - \phi I_{ss}),
+\end{align*}
+where $\lambda$ is the Lagrange multiplier.
+The first-order optimality conditions are as follows:
+\begin{align*}
+  [c]:&\quad c^{-\sigma} = \mu
+  \\
+  [a']:&\quad \mu = \beta \mathbb{E}V_{1}(a';S') + \lambda
+  \\
+  [N]:&\quad N = \left(\frac{w}{\eta c^{\sigma}}\right)^{\chi}
+  \\
+  [a]:&\quad V_{1}(a;S) = \mu(1+r(S)) - (1-\delta)\lambda
+\end{align*}
+Then, we obtain
+\begin{align*}
+  c^{-\sigma} -\lambda= \beta \mathbb{E}\left[(c')^{-\sigma}(1+r(S)) -(1-\delta)\lambda'\right].
+\end{align*}

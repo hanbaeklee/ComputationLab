@@ -1,0 +1,130 @@
+\subsection*{Recursive formulation}
+We consider a continuum of unit measure of households who consumes, saves in two assets (capital and bond), and supplies labor, solving the following problem:
+\begin{align*}
+  V(\omega,z;S) &= \max_{c,n,a',b'}\text{ } \frac{c^{1-\sigma}}{1-\sigma} -\frac{\eta}{1+\frac{1}{\chi}} n^{1+\frac{1}{\chi}}+ \beta \mathbb{E}V(z',\omega';S')
+  \\
+  \text{s.t. }& 
+  c + a' + q^{b}(S)b' =  \omega  + zw(S)n
+  % a(1+r(S)) + zwn(S) + b - T
+  \\
+  &
+  \omega' = a'(1+r(S')) + b'
+  \\
+  &a'\geq 0,\quad b'\geq \underline{b}
+  % \\
+  % &
+  % (a'-a)\geq -\delta (a-\varphi K^{ss} ),
+  % \quad -b'\leq \kappa a
+  \\
+  & S' = \Gamma_{S}(S) \quad(\text{Aggregate law of motion})
+  \\
+  & z' \sim \pi(z'|z)
+\end{align*} 
+where %$T$ is an exogenous lump-sum tax. $c$ is consumption, 
+% $a$ is the wealth in the beginning of a period, and $b$ is the debt level in the beginning of a period. 
+$c$ is consumption;
+$\omega$ is the capital income and stock in the beginning of a period; $z$ is idiosyncratic labor productivity, $n$ is endogenously determined labor supply, and $w$ is wage to be competitively determined at the factor input market, which thereby indicates that $zw(S)n$ is the labor income; $a$ is the capital stock that earns capital rent $r=r(S)$ in each period, where the rent is competitively determined in the factor input market; $b$ is the risk-free bond holding of which the price is $q=q(S)$. Apostrophe indicates future allocation. 
+$\sigma$ is risk-aversion parameter; $\chi$ is the Frisch labor elasticity; $\eta$ is the labor disutility parameter; $\beta$ is the discount factor. $\underline{b}\leq0$ is the borrowing limit for future bond holding, and future capital stock is also bound by zero borrowing limit.
+
+$S$ is the aggregate state defined as follows:
+\begin{align*}
+  S := \{\Phi,A\}
+\end{align*}
+where $\Phi$ is the joint distribution of the individual states; $A$ is aggregate productivity. The stochastic processes for the aggregate productivity and the idiosyncratic productivity are as follows:
+\begin{align*}
+  log(A') &= \rho_{A}log(A) + \sigma_{A}\epsilon\quad \epsilon\sim_{iid} N(0,1)
+  \\
+  log(z') &= \rho_{z}log(z) + \sigma_{z}\epsilon\quad \epsilon\sim_{iid} N(0,1)
+  % \\
+  % log(G') &= (1-\rho_{G})log(\overline{G})+\rho_{G}log(G) + \sigma_{G}\epsilon\quad \epsilon\sim_{iid} N(0,1)
+\end{align*}
+% where $\overline{G}$ is the average government demand level.
+
+The production sector is as follows:
+\begin{align*}
+  \max_{K,L} A K^{\alpha}L^{1-\alpha} - w(S)L - (r(S)+\delta)K
+\end{align*}
+where $K$ is capital factor demand and $L$ is the labor factor demand. $\delta>0$ is the capital depreciation rate.
+ 
+Capital rent $r(S)$, wage $w(S)$, and the bond price $q^{b}(S)$ are determined at the competitive market:
+\begin{align*}
+  [r]&:\quad \int a'(\omega,z;S)d\Phi(S) = K'(S)
+  \\
+  [w]&:\quad \int z l(\omega,z;S) d\Phi(S) = L(S)
+  \\
+  [q]&:\quad \int b'(\omega,z;S) d\Phi(S) = 0
+\end{align*}
+where we assume the aggregate net bond supply is zero as in Krusell and Smith (1997).
+
+\clearpage
+\subsection*{Optimality conditions}
+The Largrangian is as follows:
+\begin{align*}
+  \mathcal{L} &= \frac{c^{1-\sigma}}{1-\sigma} -\frac{\eta}{1+\frac{1}{\chi}} n^{1+\frac{1}{\chi}} + \beta \mathbb{E}V(z',a'(1+r(S')) + b';S')
+  \\ 
+  &+ \mu\left(\omega +zw(S)n - c - a' - q^{b}(S)b' \right)
+  % \\
+  % &+ \mu_{1}\left(a'(1+r(S')) + zw(S')n' + b' -\omega' \right)
+  \\
+  &+ \lambda a'
+  % \\
+  % &+ \lambda \left(a'-a +\delta (a- \varphi a^{ss} )\right)
+  \\
+  &+ \phi (b'-\underline{b})
+\end{align*}
+where $\lambda$ is the Lagrange multiplier.
+The first-order optimality conditions are as follows:
+\begin{align*}
+  [c]:&\quad c^{-\sigma} = \mu
+  \\
+  [a']:&\quad \mu = \beta \mathbb{E}V_{\omega}'(1+r(S')) + \lambda
+  \\
+  % [b']:&\quad \frac{\mu}{R^{b}(S)} = \beta \mathbb{E}V_{2}(a',b';S') + \frac{\phi}{R^{b}(S)} 
+  [b']:&\quad q^{b}(S)\mu = \beta \mathbb{E}V_{\omega}' + \phi
+  \\
+  % [a]:&\quad V_{1}(a,b;S) = \mu(1+r(S)) -\lambda(1-\delta) + \phi\kappa
+  [\omega]:&\quad V_{\omega} = \mu
+  % \\
+  % [b]:&\quad V_{2}(z,a,b;S) = \mu
+  \\
+  [n]:&\quad n = \left(\frac{zw}{\eta c^{\sigma}}\right)^{\chi}
+\end{align*}
+% From the bond market clearing, we have
+% \begin{align*}
+%   \frac{1}{R^{b}(S)} -\xi_{1}- \xi_{2} b' - \frac{1}{R^{f}(S)} = 0
+%   % \\
+%   % R^{b}(S) = 
+% \end{align*}
+Then, we obtain
+\begin{align*}
+  c^{-\sigma}- \lambda &= \beta \mathbb{E}\left[(c')^{-\sigma}(1+r(S'))\right] 
+  \\
+  q^{b}(S)c^{-\sigma}-\phi &= \beta \mathbb{E}\left[(c')^{-\sigma}\right]
+  \\
+  n &= \left(\frac{zw}{\eta c^{\sigma}}\right)^{\chi}
+\end{align*}
+The equilibrium is computed by considering the following slackness conditions:
+\begin{align*}
+  \lambda & 
+  \begin{cases}
+    >0 \quad &\text{if } a'=0
+    \\
+    =0 \quad &\text{if } a'>0
+  \end{cases}
+  \\
+  \phi & 
+  \begin{cases}
+    >0 \quad &\text{if } b'=\underline{b}
+    \\
+    =0 \quad &\text{if } b'>\underline{b}
+  \end{cases}
+  % \\
+  % \psi & 
+  % \begin{cases}
+  %   >0 \quad &\text{if } q^{b}(S)b' = 
+  %   \\
+  %   =0 \quad &\text{if } q^{b}(S)b' > \underline{b}
+  % \end{cases}
+  \\
+  \mu&>0
+\end{align*}
