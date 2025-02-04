@@ -1,26 +1,75 @@
 \subsection*{Recursive formulation}
-The heterogeneous household's problem is as follows:
-\begin{align*}
-  V(a,z;S) &= \max_{c,l,a'}\text{ } log(c) - \frac{\eta}{1+\frac{1}{\chi}}l^{1+\frac{1}{\chi}}+ \beta \mathbb{E}V(a',z';S')
+% The heterogeneous household's problem is as follows:
+% \begin{align*}
+%   V(a,z;S) &= \max_{c,l,a'}\text{ } log(c) - \frac{\eta}{1+\frac{1}{\chi}}l^{1+\frac{1}{\chi}}+ \beta \mathbb{E}V(a',z';S')
+%   \\
+%   \text{s.t.}\quad& c + a' = (1+r(S))a + w(S)zl - T
+%   \\
+%   & a'-(1-\delta)a\geq \phi I^{ss}
+%   \\
+%   & S' = \Gamma_{S}(S) \quad(\text{Aggregate law of motion})
+%   \\
+%   & z' \sim \pi(z'|z)
+% \end{align*}
+% where $S = \{\Phi,A,G\}$ is the aggregate state.
+
+% The production side is as follows:
+% \begin{align*}
+%   \max_{K,L} A K^{\alpha}L^{1-\alpha} - w(S)L - (r(S)+\delta)K
+% \end{align*}
+
+% The capital rent $r(S)$ and the wage $w(S)$ are determined at the competitive market:
+% \begin{align*}
+%   [r]&:\quad \int a'(a,z;S)d\Phi(S) = K'(S)
+%   \\
+%   [w]&:\quad \int z l(a,z;S) d\Phi(S) = L(S)
+% \end{align*}
+
+
+The recursive formulation of a household's problem is as follows:
+\begin{align}
+  V(a,z;X) &= \max_{c,n,a'}\text{ } log(c) - \frac{\eta}{1+\frac{1}{\chi}}n^{1+\frac{1}{\chi}}+ \beta \mathbb{E}V(a',z';X')
   \\
-  \text{s.t.}\quad& c + a' = (1+r(S))a + w(S)zl - T
+  \text{s.t.}\quad& c + a' = (1+r(X))a + w(X)zn - T(X)
   \\
   & a'-(1-\delta)a\geq \phi I^{ss}
   \\
-  & S' = \Gamma_{S}(S) \quad(\text{Aggregate law of motion})
+  & X' = \Gamma_{X}(X) \quad(\text{Aggregate law of motion})
   \\
   & z' \sim \pi(z'|z)
-\end{align*}
-where $S = \{\Phi,A,G\}$ is the aggregate state.
+\end{align}
+where $V$ is the value function of a household; $r$ and $w$ are capital rent and wage that are determined at the competitive input factor markets. 
+$I_{ss}$ is the steady-state aggregate saving (investment) level. $T$ is the lump-sum tax.
+$\chi$ is the Frisch elasticity parameter, and $\eta$ is the labor disutility parameter.
+$\phi$ is the parameter that governs the degree of the saving irreversibility. $\Gamma_{X}$ is the aggregate law of motion. The idiosyncratic productivity $z$ follows a Markov process, where $\pi(z'|z)$ governs the transition probability.
+ 
+We consider a production sector that operates using a CRS Cobb-Douglas production function:
+\begin{align}
+  \max_{K,L}\text{ } AK^{\alpha}L^{1-\alpha} - w(X)L - (r(X)+\delta)K,
+\end{align}
+where $A$ is the aggregate TFP, $K$ and $L$ are capital and labor input demands. 
+% The capital rent $r(X)$ and the wage $w(X)$ are determined at the competitive factor market by clearing conditions.
 
-The production side is as follows:
-\begin{align*}
-  \max_{K,L} A K^{\alpha}L^{1-\alpha} - w(S)L - (r(S)+\delta)K
-\end{align*}
-
-The capital rent $r(S)$ and the wage $w(S)$ are determined at the competitive market:
-\begin{align*}
-  [r]&:\quad \int a'(a,z;S)d\Phi(S) = K'(S)
+The aggregate state $X$ includes following three components:
+\begin{align}
+  X = \{\Phi,A,G\}.
+\end{align}
+where $\Phi$ is the distribution of the individual states, $A$ is TFP, and $G$ is government demand. The first is endogenous aggregate state, and the others follow exogenous log AR(1) processes specified as follows:
+\begin{align}
+  log(A') &= \rho_{A}log(A) + \sigma_{A}\epsilon\quad \epsilon\sim_{iid} N(0,1)
   \\
-  [w]&:\quad \int z l(a,z;S) d\Phi(S) = L(S)
-\end{align*}
+  log(G') &= (1-\rho_{G})log(\overline{G})+\rho_{G}log(G) + \sigma_{G}\epsilon\quad \epsilon\sim_{iid} N(0,1)
+\end{align}
+where $\overline{G}$ is the steady-state government demand. For $j\in\{A,G\}$,
+$\rho_{j}$ is the persistence parameter for the exogenous processes, and $\sigma_{j}$ is the volatility parameter. These processes are discretized by the Tauchen method in the computation.
+I assume the simplest government setup where the budget is balanced by lump-sum tax collection: $T(X) = G$. By assuming this, the symmetric lump-sum tax is collected from heterogeneous households.
+For computation, I use the standard parameter levels in the literature, which are available in Appendix C. 
+% In the stationary equilibrium, the model-implied constrained households are around 68 percent, which is within the range of the estimates of the hand-to-mouth household portion, according to \citet{kaplan_violante_2014}.
+
+The recursive competitive equilibrium is defined based on the following market-clearing conditions:
+\begin{align}
+    \text{(Labor market)}&\quad L(X) = \int zn(a,z;X)d\Phi
+    \\
+    % \text{(Capital market)}&\quad K(X') = \int a'(a,z;X)d\Phi.
+    \text{(Capital market)}&\quad K(X) = \int a d\Phi.
+\end{align}
