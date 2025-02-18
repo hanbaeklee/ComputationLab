@@ -4,7 +4,7 @@
 
 Hanbaek Lee (hanbaeklee1@gmail.com)
 
-[(click here for the latest draft)](https://hanbaeklee.github.io/Webpage/Lee_AggRepTrans_2024.pdf)
+[(click here for the latest draft)](https://hanbaeklee.github.io/Webpage/Lee_AggRepTrans_2025.pdf)
 
 </div>
 
@@ -14,7 +14,7 @@ Run runner.m in MATLAB after downloading all the files in the directory of the m
 ## Citation
 When you use the code, please cite my paper 
 ```bibtex
-@article{Lee_RTM_2024,
+@article{Lee_RTM_2025,
   title={Dynamically Consistent Global Nonlinear Solutions in the Sequence Space: Theory and Applications},
   author={Lee, Hanbaek},
   journal={Working paper},
