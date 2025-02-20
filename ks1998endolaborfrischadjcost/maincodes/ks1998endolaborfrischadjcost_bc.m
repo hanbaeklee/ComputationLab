@@ -212,11 +212,10 @@ for iAprime = 1:pnumgridA
 end
 
 mexpectation = pbeta*mexpectation;
-mexpectation = (mexpectation + mlambda(:,:,itrans))./(1+pmu*(mpolaprime(:,:,itrans)-mgrida)./mgrida); 
-c = 1./(mexpectation);
+c = (1+pmu*(mpolaprime(:,:,itrans)-mgrida)./mgrida)./(mexpectation + mlambda(:,:,itrans));
 n = (w*mgridz./(peta*c)).^pfrisch;
-% mlambdaNewTemp = 1./(w.*mGridz.*n + (1+r).*mgrida - mpolaprime(:,:,iTrans)) - mExpectation;
-mlambda_newtemp = 1./mpolc(:,:,itrans) - mexpectation;
+mlambda_newtemp = (1+pmu*(mpolaprime(:,:,itrans)-mgrida)./mgrida)./mpolc(:,:,itrans) - mexpectation;
+
 mpolaprime_newtemp = w.*mgridz.*n + (1+r).*mgrida - c - (pmu/2).*((mpolaprime(:,:,itrans)-mgrida)./mgrida).^2.*mgrida;
 mlambda_newtemp(mpolaprime_newtemp>vgridamin) = 0;
 c = (c - (vgridamin-mpolaprime_newtemp)).*(mpolaprime_newtemp<=vgridamin) + c.*(mpolaprime_newtemp>vgridamin);
