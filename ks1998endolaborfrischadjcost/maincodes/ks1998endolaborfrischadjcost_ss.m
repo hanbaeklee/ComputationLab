@@ -147,7 +147,8 @@ end
 mexpectation = pbeta*mexpectation;
 c = (1+pmu*(mpolaprime-mgrida)./mgrida)./(mexpectation+mlambda);
 mpoln = (w.*mgridz./(peta*c)).^pfrisch;
-mlambda_new = (1+pmu*(mpolaprime-mgrida)./mgrida)./(w.*mgridz.*mpoln + (1+r).*mgrida - mpolaprime) - mexpectation;
+mlambda_new = (1+pmu*(mpolaprime-mgrida)./mgrida)./(w.*mgridz.*mpoln + (1+r).*mgrida - (pmu/2).*((mpolaprime-mgrida)./mgrida).^2.*mgrida ...
+            - mpolaprime) - mexpectation;
 mpolaprime_new = w.*mgridz.*mpoln + (1+r).*vgrida' - c - (pmu/2).*((mpolaprime-mgrida)./mgrida).^2.*mgrida;
 
 mlambda_new(mpolaprime_new>vgridamin) = 0;
