@@ -104,7 +104,7 @@ tlambda = sum(ss.mlambda.*ss.currentdist,"all")*ones(pathlength,1);
 %=========================    
 % use the following line if you wish to start from where you stopped
 % before.
-% load '../solutions/WIP_ks1998endolabor_bc.mat';
+load '../solutions/WIP_ks1998endolabor_bc.mat';
 
 %%        
 %=========================    
@@ -166,8 +166,8 @@ for ishockprime = 1:pnumgridz*pnumgridA
     if futureShock ~= iAprime || itrans == pathlength       
     % find a period where the future shock realization is the same as
     % iAprime and the capital stock is closest to Kprime from below and above.
-    candidate = tK(find(tsimpath==iAprime)); % the candidates with the specific exogenous state
-    candidatelocation = find(tsimpath==iAprime); % the candidates' location
+    candidate = tK(find(tsimpath==iAprime)); % iso-shock periods
+    candidatelocation = find(tsimpath==iAprime); % iso-shock period locations
     candidate(candidatelocation>pathlength-burnin) = []; % last burnin periods cannot be a candidate
     candidate(candidatelocation<burnin) = [];  % initial burnin periods cannot be a candidate
     candidatelocation(candidatelocation>pathlength-burnin) = []; % last burnin periods cannot be a candidate
@@ -231,8 +231,9 @@ end
 mexpectation = pbeta*mexpectation;
 c = 1./(mexpectation+ mlambda(:,:,itrans));
 n = 1-(1-ptheta).*mpolc(:,:,itrans)./(w.*mgridz.*ptheta);
-mlambda_newtemp = 1./mpolc(:,:,itrans) - pbeta*mexpectation;
-mlambda_newtemp(mlambda_newtemp>9999) = 0;
+% mlambda_newtemp = 1./mpolc(:,:,itrans) - pbeta*mexpectation;
+mlambda_newtemp = 1./(w.*mgridz.*mpoln(:,:,itrans) + (1+r).*mgrida - mpolaprime(:,:,itrans)) - pbeta*mexpectation;
+mlambda_newtemp(mlambda_newtemp<0) = 0;
 mpolaprime_newtemp = w.*mgridz.*mpoln(:,:,itrans) + (1+r).*mgrida - c;
 mlambda_newtemp(mpolaprime_newtemp>vgridamin) = 0;
 c = (c - (vgridamin-mpolaprime_newtemp)).*(mpolaprime_newtemp<=vgridamin) + c.*(mpolaprime_newtemp>vgridamin);
@@ -334,8 +335,7 @@ end
 % market clearing
 error2  = mean(abs(...
         [tK(burnin+1:pathlength-burnin)-tK_new(burnin+1:pathlength-burnin) ;...
-        tsupplyL(burnin+1:pathlength-burnin)-tsupplyL_new(burnin+1:pathlength-burnin);...
-        tlambda(burnin+1:pathlength-burnin)-tlambda_new(burnin+1:pathlength-burnin)].^2));
+        tsupplyL(burnin+1:pathlength-burnin)-tsupplyL_new(burnin+1:pathlength-burnin)].^2));
 
 errorK      = tK - tK_new;
 tK          = weightold1.*tK            +(1-weightold1).*tK_new;
@@ -427,17 +427,17 @@ fprintf('======================== \n');
 [~,vYhpfilter] = hpfilter(log(tY),1600);
 [~,vIhpfilter] = hpfilter(log(tI),1600);
 [~,vChpfilter] = hpfilter(log(tC),1600);
-fprintf('mean log(output): %.4f \n', mean((vYhpfilter)));
-fprintf('st. dev. log(output): %.4f \n', std((vYhpfilter)));
-fprintf('skewness log(output): %.4f \n', skewness((vYhpfilter)));
+fprintf('mean log(output): %.4f \n', mean(log(vYhpfilter)));
+fprintf('st. dev. log(output): %.4f \n', std(log(vYhpfilter)));
+fprintf('skewness log(output): %.4f \n', skewness(log(vYhpfilter)));
 fprintf('------------------------ \n');
-fprintf('mean log(investment): %.4f \n', mean((vIhpfilter)));
-fprintf('st. dev. log(investment): %.4f \n', std((vIhpfilter)));
-fprintf('skewness log(investment): %.4f \n', skewness((vIhpfilter)));
+fprintf('mean log(investment): %.4f \n', mean(log(vIhpfilter)));
+fprintf('st. dev. log(investment): %.4f \n', std(log(vIhpfilter)));
+fprintf('skewness log(investment): %.4f \n', skewness(log(vIhpfilter)));
 fprintf('------------------------ \n');
-fprintf('mean log(consumption): %.4f \n', mean((vChpfilter)));
-fprintf('st. dev. log(consumption): %.4f \n', std((vChpfilter)));
-fprintf('skewness log(consumption): %.4f \n', skewness((vChpfilter)));
+fprintf('mean log(consumption): %.4f \n', mean(log(vChpfilter)));
+fprintf('st. dev. log(consumption): %.4f \n', std(log(vChpfilter)));
+fprintf('skewness log(consumption): %.4f \n', skewness(log(vChpfilter)));
 
 %%
 %=========================  

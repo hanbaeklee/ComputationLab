@@ -99,8 +99,8 @@ tol_labor       = 1e-10;
 tol_ge          = 1e-10;
 tol_pfi         = 1e-10;
 tol_hist        = 1e-10;
-weightold1      = 0.8000;
-weightold2      = 0.8000;
+weightold1      = 0.9990;
+weightold2      = 0.9990;
 weightold3      = 0.8000;
 weightold4      = 0.8000;
 weightold5      = 0.8000;
@@ -161,6 +161,9 @@ w   = (1-palpha)*(K/supplyL)^(palpha);
 % policy function iteration. the policy function is simultaneously updated
 % with the price (aggregate capital) to boost the speed.
 
+error = 10;
+pnumiter_vfi = 1;
+while error>tol_pfi
 mexpectation = 0;    
 for ishockprime = 1:pnumgridz
     
@@ -183,7 +186,7 @@ end
 mexpectation = pbeta*mexpectation + mlambda;
 c = 1./mexpectation;
 mlambda_new = 1./(w.*mgridz.*mpoln + (1+r).*mgrida - mpolaprime) - pbeta*mexpectation;
-mlambda_new(mlambda_new>9999) = 0;
+mlambda_new(mlambda_new<0) = 0;
 mpoln_new = 1-(1-ptheta).*mpolc./(w.*mgridz.*ptheta);
 mpoln_new(mpoln_new>1) = 1;
 mpoln_new(mpoln_new<0) = 0;
@@ -196,7 +199,13 @@ mpolc(mpolc<0) = 0;
 
 % iteration routine
 error = max(abs(mpolaprime-mpolaprime_new),[],"all");
+pnumiter_vfi = pnumiter_vfi+1;
 
+mlambda     = weightold3.*mlambda       + (1-weightold3).*mlambda_new;
+mpolaprime  = weightold4.*mpolaprime    + (1-weightold4).*mpolaprime_new;
+mpoln       = weightold5.*mpoln         + (1-weightold5).*mpoln_new;
+
+end
 
 %%
 %=========================
@@ -311,18 +320,14 @@ endoSupplyL     = sum(currentdist.*mpoln.*mgridz,'all');
 %=========================  
 error2 = mean(abs(...
     [endoK - K;...
-    endoSupplyL - supplyL;...
-    Lambda - endoLambda]), ...
+    endoSupplyL - supplyL]), ...
     'all');
 
 K           = weightold1.*K             + (1-weightold1).*endoK;
 supplyL     = weightold2.*supplyL       + (1-weightold2).*endoSupplyL;
-mlambda     = weightold3.*mlambda       + (1-weightold3).*mlambda_new;
-mpolaprime  = weightold4.*mpolaprime    + (1-weightold4).*mpolaprime_new;
-mpoln       = weightold5.*mpoln         + (1-weightold5).*mpoln_new;
 
 % report only spasmodically
-if verbose == true && (floor((pnumiter_ge-1)/100) == (pnumiter_ge-1)/100) || error2<= tol_ge
+if verbose == true && (floor((pnumiter_ge-1)/200) == (pnumiter_ge-1)/200) || error2<= tol_ge
 %=========================  
 % interim report
 %=========================  
