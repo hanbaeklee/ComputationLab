@@ -183,8 +183,7 @@ for ishockprime = 1:pnumgridz
     
 end
 
-mexpectation = pbeta*mexpectation + mlambda;
-c = 1./mexpectation;
+c = 1./(pbeta*mexpectation + mlambda);
 mlambda_new = 1./(w.*mgridz.*mpoln + (1+r).*mgrida - mpolaprime) - pbeta*mexpectation;
 mlambda_new(mlambda_new<0) = 0;
 mpoln_new = 1-(1-ptheta).*mpolc./(w.*mgridz.*ptheta);
