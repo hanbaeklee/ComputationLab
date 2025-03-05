@@ -55,9 +55,9 @@ tsimpathSample = tsimpath(burnin+1:pathlength-burnin);
 figure;
 for iA = 1:pnumgridA
 tempK = tKsample(tsimpathSample==iA);
-tempRHS = squeeze(RHSsample(ik,iz,tsimpathSample==iA));
+tempRHS1 = squeeze(RHSsample(ik,iz,tsimpathSample==iA));
 subplot(1,2,iA);
-scatter(tempK,tempRHS);
+scatter(tempK,tempRHS1);
 xlabel("K","FontSize",15);
 ylabel("RHS of Euler","FontSize",15);
 temptitle = append('A',num2str(iA));
@@ -77,9 +77,9 @@ tsimpathSample = tsimpath(burnin+1:pathlength-burnin);
 figure;
 for iA = 1:pnumgridA
 tempK = tKsample(tsimpathSample==iA);
-tempRHS = squeeze(RHSsample(ik,iz,tsimpathSample==iA));
+tempRHS1 = squeeze(RHSsample(ik,iz,tsimpathSample==iA));
 subplot(1,2,iA);
-scatter(tempK,tempRHS);
+scatter(tempK,tempRHS1);
 xlabel("K","FontSize",15);
 ylabel("RHS of Euler","FontSize",15);
 temptitle = append('A',num2str(iA));
@@ -89,3 +89,34 @@ set(gcf, 'PaperPosition', [0 0 9 4]); %Position plot at left hand corner with wi
 set(gcf, 'PaperSize', [9 4]); %Set the paper to have width a and height b.Grid off;
 location = ['../figures/monotonicity2.pdf'];
 saveas(gcf, location);
+
+
+%% 
+% compute the spearman coefficients.
+mtable1 = zeros(pnumgridz,pnumgridomega,pnumgridA);
+mtable2 = zeros(pnumgridz,pnumgridomega,pnumgridA);
+for iz = 1:pnumgridz
+for ik = 1:pnumgridomega
+
+tKsample = tK(burnin+1:pathlength-burnin);
+RHSsample1 = RHS1(:,:,burnin+1:pathlength-burnin);
+RHSsample2 = RHS2(:,:,burnin+1:pathlength-burnin);
+tsimpathSample = tsimpath(burnin+1:pathlength-burnin);
+
+for iA = 1:pnumgridA
+tempK = tKsample(tsimpathSample==iA);
+tempRHS1 = squeeze(RHSsample1(ik,iz,tsimpathSample==iA));
+tempRHS2 = squeeze(RHSsample2(ik,iz,tsimpathSample==iA));
+
+mtable1(iz,ik,iA) = table2array(monotonicity( array2table([tempK,tempRHS1]),"Method","rank"));
+mtable2(iz,ik,iA) = table2array(monotonicity( array2table([tempK,tempRHS2]),"Method","rank"));
+
+end
+
+end
+end
+
+mean(mtable1(:))
+mean(mtable2(:))
+std(mtable1(:))
+std(mtable2(:))

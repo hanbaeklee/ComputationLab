@@ -61,3 +61,28 @@ set(gcf, 'PaperPosition', [0 0 18 10]); %Position plot at left hand corner with 
 set(gcf, 'PaperSize', [18 10]); %Set the paper to have width a and height b.Grid off;
 location = ['../figures/monotonicity.pdf'];
 saveas(gcf, location);
+
+%% 
+% compute the spearman coefficients.
+mtable = zeros(pnumgridz,pnumgrida,pnumgridA);
+for iz = 1:pnumgridz
+for ik = 1:pnumgrida
+
+tKsample = tK(burnin+1:pathlength-burnin);
+RHSsample = RHS(:,:,burnin+1:pathlength-burnin);
+tsimpathSample = tsimpath(burnin+1:pathlength-burnin);
+
+for iA = 1:pnumgridA
+tempK = tKsample(tsimpathSample==iA);
+tempRHS = squeeze(RHSsample(ik,iz,tsimpathSample==iA));
+
+mtable(iz,ik,iA) = table2array(monotonicity( array2table([tempK,tempRHS]),"Method","rank"));
+
+end
+
+end
+end
+
+mean(mtable(:))
+std(mtable(:))
+min(mtable(:))
