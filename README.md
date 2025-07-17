@@ -18,6 +18,6 @@ When you use the code, please cite my paper
   title={Global Nonlinear Solutions in Sequence Space and the Generalized Transition Function},
   author={Lee, Hanbaek},
   journal={Working paper},
-  year={2024}
+  year={2025}
 }
 ```
