@@ -1,6 +1,6 @@
 <div align="center">
 
-# Dynamically Consistent Global Nonlinear Solutions in the Sequence Space: Theory and Applications
+# Global Nonlinear Solutions in Sequence Space and the Generalized Transition Function
 
 Hanbaek Lee (hanbaeklee1@gmail.com)
 
@@ -15,9 +15,9 @@ Run runner.m in MATLAB after downloading all the files in the directory of the m
 When you use the code, please cite my paper 
 ```bibtex
 @article{Lee_RTM_2025,
-  title={Dynamically Consistent Global Nonlinear Solutions in the Sequence Space: Theory and Applications},
+  title={Global Nonlinear Solutions in Sequence Space and the Generalized Transition Function},
   author={Lee, Hanbaek},
   journal={Working paper},
-  year={2024}
+  year={2025}
 }
 ```
