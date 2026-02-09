@@ -146,7 +146,7 @@ tempq = pa.kappa./tempV1;
 vqnew = tempq;
 vqnew(vqnew>1) =1;
 
-vwnew = (1-pa.eta)*pa.b + pa.eta*(A + pa.kappa.*(vv./vu));
+vwnew = (1-pa.eta)*pa.b + pa.eta*(vA + pa.kappa.*(vv./vu));
 vExpSDF = tempV2;
 
 %=========================    
